@@ -1,40 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const ProductImages = () => {
+const ProductImages = ({ images }) => {
+  let [mainImg, setMainImg] = useState(images[0]);
+
   return (
     <Wrapper>
-      <img
-        src="https://dl.airtable.com/.attachments/e2eef862d9b7a2fb0aa74fa24fbf97bb/25c4bc17/0-pexels-pixabay-462235.jpg"
-        alt="main"
-        className="main"
-      />
+      <img src={mainImg.url} alt="main" className="main" />
       <div className="gallery">
-        <img
-          src="https://dl.airtable.com/.attachments/e2eef862d9b7a2fb0aa74fa24fbf97bb/25c4bc17/0-pexels-pixabay-462235.jpg"
-          alt="0-pexels-pixabay-462235.jpg"
-          className="active"
-        />
-        <img
-          src="https://dl.airtable.com/.attachments/f4720cc51a45ccc204f7476d51cb1b0e/eeb5fe4e/z-extra-1.jpeg"
-          alt="z-extra-1.jpeg"
-          className="null"
-        />
-        <img
-          src="https://dl.airtable.com/.attachments/a73777f8a2cbf4820ccaa6aa4349db01/c541de4b/z-extra-2.jpeg"
-          alt="z-extra-2.jpeg"
-          className="null"
-        />
-        <img
-          src="https://dl.airtable.com/.attachments/7a50daf83875879b373d91ebb9bb6012/c1695f7e/z-extra-3.jpeg"
-          alt="z-extra-3.jpeg"
-          className="null"
-        />
-        <img
-          src="https://dl.airtable.com/.attachments/5592998dcaee77b12c50bda63dd94d06/6ad61540/z-extra-4.jpeg"
-          alt="z-extra-4.jpeg"
-          className="null"
-        />
+        {images.map((image) => {
+          let {id, url, filename} = image
+          return (
+            <img
+              key={id}
+              src={url}
+              alt={filename}
+              className={id === mainImg.id && 'active'}
+              onClick={() => setMainImg(image)}
+            />
+          );
+        })}
       </div>
     </Wrapper>
   );
