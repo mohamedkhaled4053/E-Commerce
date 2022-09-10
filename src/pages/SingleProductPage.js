@@ -64,25 +64,20 @@ const SingleProductPage = () => {
         <div className="product-center">
           <ProductImages />
           <section className="content">
-            <h2>modern poster</h2>
+            <h2>{name}</h2>
             <Stars />
-            <h5 className="price">$30.99</h5>
+            <h5 className="price">{formatPrice(price)}</h5>
             <p className="desc">
-              Cloud bread VHS hell of banjo bicycle rights jianbing umami
-              mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr
-              dreamcatcher waistcoat, authentic chillwave trust fund. Viral
-              typewriter fingerstache pinterest pork belly narwhal. Schlitz
-              venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki
-              trust fund hashtag kinfolk microdosing gochujang live-edge
+              {description}
             </p>
             <p className="info">
-              <span>Available : </span>In stock
+              <span>Available : </span>{stock > 0?'In stock':'Out Of Stock'}
             </p>
             <p className="info">
-              <span>SKU : </span>recQ0fMd8T0Vk211E
+              <span>SKU : </span>{SKU}
             </p>
             <p className="info">
-              <span>Brand : </span>liddy
+              <span>Brand : </span>{company}
             </p>
             <hr />
             <AddToCart />
