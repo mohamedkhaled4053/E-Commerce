@@ -14,9 +14,14 @@ import {
 
 const initialState = {
   showSidebar: false,
+  // products
   products: [],
   loading: false,
   error: false,
+  // single product
+  singleProduct: {},
+  singleProductLoading: false,
+  singleProductError: false,
 };
 
 const ProductsContext = React.createContext();
@@ -43,11 +48,11 @@ export const ProductsProvider = ({ children }) => {
   }
 
   function fetchSingleProduct(productUrl) {
-    // dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
+    dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     fetch(productUrl)
-      .then((res) => res.json()).then(res => console.log(res))
-      // .then((res) => dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: res }))
-      // .catch((err) => dispatch({ type: GET_SINGLE_PRODUCT_ERROR }));
+      .then((res) => res.json())
+      .then((res) => dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: res }))
+      .catch((err) => dispatch({ type: GET_SINGLE_PRODUCT_ERROR }));
   }
 
   // effects

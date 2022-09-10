@@ -15,14 +15,28 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const SingleProductPage = () => {
-  let {fetchSingleProduct} = useProductsContext()
-  let {id} = useParams()
-  let productUrl = url+id
-  
-  useEffect(()=>{
-    fetchSingleProduct(productUrl)
+  let {
+    fetchSingleProduct,
+    singleProduct: prodcut,
+    singleProductLoading: loading,
+    singleProductError: error,
+  } = useProductsContext();
+
+  let { id } = useParams();
+  let productUrl = url + id;
+
+  useEffect(() => {
+    fetchSingleProduct(productUrl);
     //eslint-disable-next-line
-  },[])
+  }, []);
+
+  if(loading){
+    return <Loading />
+  }
+
+  if(error){
+    return <Error />
+  }
 
   return (
     <Wrapper>
