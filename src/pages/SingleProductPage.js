@@ -15,6 +15,15 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const SingleProductPage = () => {
+  let {fetchSingleProduct} = useProductsContext()
+  let {id} = useParams()
+  let productUrl = url+id
+  
+  useEffect(()=>{
+    fetchSingleProduct(productUrl)
+    //eslint-disable-next-line
+  },[])
+
   return (
     <Wrapper>
       <PageHero />

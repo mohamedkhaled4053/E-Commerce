@@ -42,13 +42,21 @@ export const ProductsProvider = ({ children }) => {
       .catch((err) => dispatch({ type: GET_PRODUCTS_ERROR }));
   }
 
+  function fetchSingleProduct(productUrl) {
+    // dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
+    fetch(productUrl)
+      .then((res) => res.json()).then(res => console.log(res))
+      // .then((res) => dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: res }))
+      // .catch((err) => dispatch({ type: GET_SINGLE_PRODUCT_ERROR }));
+  }
+
   // effects
   useEffect(() => {
     fetchProducts();
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
+    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct }}>
       {children}
     </ProductsContext.Provider>
   );
