@@ -16,7 +16,7 @@ const initialState = {
   showSidebar: false,
   products: [],
   loading: false,
-  error: false
+  error: false,
 };
 
 const ProductsContext = React.createContext();
@@ -24,6 +24,7 @@ const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   let [state, dispatch] = useReducer(reducer, initialState);
 
+  // helper functions
   function openSidebar() {
     dispatch({ type: SIDEBAR_OPEN });
   }
@@ -32,12 +33,18 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: SIDEBAR_CLOSE });
   }
 
-  useEffect(() => {
+  // fetch functions
+  function fetchProducts() {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     fetch(url)
       .then((res) => res.json())
       .then((res) => dispatch({ type: GET_PRODUCTS_SUCCESS, payload: res }))
       .catch((err) => dispatch({ type: GET_PRODUCTS_ERROR }));
+  }
+
+  // effects
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   return (
