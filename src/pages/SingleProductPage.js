@@ -30,13 +30,29 @@ const SingleProductPage = () => {
     //eslint-disable-next-line
   }, []);
 
-  if(loading){
-    return <Loading />
+  if (loading) {
+    return <Loading />;
   }
 
-  if(error){
-    return <Error />
+  if (error) {
+    return <Error />;
   }
+
+  let {
+    id: SKU,
+    stock,
+    price,
+    shipping,
+    featured,
+    colors,
+    images,
+    category,
+    reviews,
+    stars,
+    name,
+    description,
+    company,
+  } = prodcut;
 
   return (
     <Wrapper>
