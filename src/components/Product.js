@@ -1,12 +1,28 @@
-import React from 'react'
-import styled from 'styled-components'
-import { formatPrice } from '../utils/helpers'
-import { FaSearch } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import styled from 'styled-components';
+import { formatPrice } from '../utils/helpers';
+import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Product = () => {
-  return <h4>product</h4>
-}
+  return (
+    <Wrapper>
+      <div className="container">
+        <img
+          src="https://dl.airtable.com/.attachmentThumbnails/65708b701baa3a84883ad48301624b44/2de058af"
+          alt="entertainment center"
+        />
+        <Link className="link" to="/products/recNZ0koOqEmilmoz">
+          <FaSearch />
+        </Link>
+      </div>
+      <footer>
+        <h5>entertainment center</h5>
+        <p>$599.99</p>
+      </footer>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.article`
   .container {
@@ -63,5 +79,5 @@ const Wrapper = styled.article`
     color: var(--clr-primary-5);
     letter-spacing: var(--spacing);
   }
-`
-export default Product
+`;
+export default Product;
