@@ -15,6 +15,8 @@ import {
 const initialState = {
   showSidebar: false,
   products: [],
+  loading: false,
+  error: false
 };
 
 const ProductsContext = React.createContext();
@@ -29,6 +31,14 @@ export const ProductsProvider = ({ children }) => {
   function closeSidebar() {
     dispatch({ type: SIDEBAR_CLOSE });
   }
+
+  useEffect(() => {
+    dispatch({ type: GET_PRODUCTS_BEGIN });
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => dispatch({ type: GET_PRODUCTS_SUCCESS, payload: res }))
+      .catch((err) => dispatch({ type: GET_PRODUCTS_ERROR }));
+  }, []);
 
   return (
     <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
