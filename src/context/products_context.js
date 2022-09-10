@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useReducer } from 'react'
-import reducer from '../reducers/products_reducer'
-import { products_url as url } from '../utils/constants'
+import React, { useContext, useEffect, useReducer } from 'react';
+import reducer from '../reducers/products_reducer';
+import { products_url as url } from '../utils/constants';
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -10,32 +10,33 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
-} from '../actions'
+} from '../actions';
 
 const initialState = {
-  showSidebar: false
-}
+  showSidebar: false,
+  products: [],
+};
 
-const ProductsContext = React.createContext()
+const ProductsContext = React.createContext();
 
 export const ProductsProvider = ({ children }) => {
-  let [state, dispatch] = useReducer(reducer, initialState)
+  let [state, dispatch] = useReducer(reducer, initialState);
 
   function openSidebar() {
-    dispatch({type: SIDEBAR_OPEN})
+    dispatch({ type: SIDEBAR_OPEN });
   }
 
   function closeSidebar() {
-    dispatch({type: SIDEBAR_CLOSE})
+    dispatch({ type: SIDEBAR_CLOSE });
   }
 
   return (
-    <ProductsContext.Provider value={{...state, openSidebar, closeSidebar}}>
+    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
       {children}
     </ProductsContext.Provider>
-  )
-}
+  );
+};
 // make sure use
 export const useProductsContext = () => {
-  return useContext(ProductsContext)
-}
+  return useContext(ProductsContext);
+};

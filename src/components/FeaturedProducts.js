@@ -17,7 +17,6 @@ const FeaturedProducts = () => {
         <Product />
         <Product />
         <Product />
-
       </div>
       <Link className="btn" to="/products">
         all products

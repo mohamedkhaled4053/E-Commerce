@@ -7,14 +7,14 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
-} from '../actions'
+} from '../actions';
 
 const products_reducer = (state, action) => {
-  if(action.type === SIDEBAR_OPEN){
-    return {...state, showSidebar: true}
+  if (action.type === SIDEBAR_OPEN) {
+    return { ...state, showSidebar: true };
   }
-  if(action.type === SIDEBAR_CLOSE){
-    return {...state, showSidebar: false}
+  if (action.type === SIDEBAR_CLOSE) {
+    return { ...state, showSidebar: false };
   }
   // if(action.type === SIDEBAR_OPEN){
 
@@ -25,7 +25,7 @@ const products_reducer = (state, action) => {
   // if(action.type === SIDEBAR_OPEN){
 
   // }
-  throw new Error(`No Matching "${action.type}" - action type`)
-}
+  throw new Error(`No Matching "${action.type}" - action type`);
+};
 
-export default products_reducer
+export default products_reducer;
