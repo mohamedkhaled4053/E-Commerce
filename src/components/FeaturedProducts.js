@@ -7,13 +7,13 @@ import Loading from './Loading';
 import Product from './Product';
 
 const FeaturedProducts = () => {
-  let {loading, error, products} = useProductsContext()
+  let { loading, error, products } = useProductsContext();
 
-  if (loading){
-    return <Loading />
+  if (loading) {
+    return <Loading />;
   }
-  if (error){
-    return <Error />
+  if (error) {
+    return <Error />;
   }
 
   return (
@@ -23,9 +23,12 @@ const FeaturedProducts = () => {
         <div className="underline"></div>
       </div>
       <div className="section-center featured">
-        <Product />
-        <Product />
-        <Product />
+        {products
+          .filter((product) => product.featured)
+          .slice(0, 3)
+          .map((product) => (
+            <Product key={product.id} {...product} />
+          ))}
       </div>
       <Link className="btn" to="/products">
         all products

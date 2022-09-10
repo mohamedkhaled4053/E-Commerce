@@ -4,21 +4,18 @@ import { formatPrice } from '../utils/helpers';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Product = () => {
+const Product = ({ id, name, price, image }) => {
   return (
     <Wrapper>
       <div className="container">
-        <img
-          src="https://dl.airtable.com/.attachmentThumbnails/65708b701baa3a84883ad48301624b44/2de058af"
-          alt="entertainment center"
-        />
-        <Link className="link" to="/products/recNZ0koOqEmilmoz">
+        <img src={image} alt={name} />
+        <Link className="link" to={`/products/${id}`}>
           <FaSearch />
         </Link>
       </div>
       <footer>
-        <h5>entertainment center</h5>
-        <p>$599.99</p>
+        <h5>{name}</h5>
+        <p>${price}</p>
       </footer>
     </Wrapper>
   );
