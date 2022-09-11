@@ -5,8 +5,28 @@ import { FaCheck } from 'react-icons/fa';
 import { useCartContext } from '../context/cart_context';
 import AmountButtons from './AmountButtons';
 
-const AddToCart = ({ colors }) => {
+const AddToCart = ({ colors, stock }) => {
   let [mianColor, setMainColor] = useState(colors[0]);
+  let [amount, setAmount] = useState(1);
+  let [alert, setAlert] = useState('');
+
+  function increase() {
+    setAlert('');
+    if (amount < stock) {
+      setAmount(amount + 1);
+    } else {
+      setAlert('this is all amount in stock for now');
+    }
+  }
+
+  function decrease() {
+    setAlert('');
+    if (amount > 1) {
+      setAmount(amount - 1);
+    } else {
+      setAlert("can't be less than one");
+    }
+  }
 
   return (
     <Wrapper>
@@ -26,7 +46,12 @@ const AddToCart = ({ colors }) => {
       </div>
 
       <div className="btn-container">
-        <AmountButtons />
+        <AmountButtons
+          amount={amount}
+          increase={increase}
+          decrease={decrease}
+        />
+        {alert && <p className="alert">{alert}</p>}
         <Link className="btn" to="/cart">
           add to cart
         </Link>
@@ -73,6 +98,10 @@ const Wrapper = styled.section`
   }
   .btn-container {
     margin-top: 2rem;
+    .alert {
+      color: red;
+      margin-bottom: none;
+    }
   }
 
   .btn {
