@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const ProductImages = ({ images }) => {
-  let [mainImg, setMainImg] = useState(images[2]);
+  let [mainImg, setMainImg] = useState(images[0]);
 
   function handlekeydown(e) {
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
