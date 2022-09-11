@@ -80,7 +80,7 @@ const SingleProductPage = () => {
               <span>Brand : </span>{company}
             </p>
             <hr />
-            <AddToCart />
+            <AddToCart {...prodcut}/>
           </section>
         </div>
       </div>
