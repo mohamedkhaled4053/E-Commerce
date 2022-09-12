@@ -6,7 +6,7 @@ import ListView from './ListView';
 const ProductList = () => {
   let {products, layout} = useFilterContext()
   if(layout === 'list-view'){
-    return <ListView />
+    return <ListView products={products} />
   }
   return (
     <GridView products={products}/>
