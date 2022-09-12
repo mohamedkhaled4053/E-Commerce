@@ -1,12 +1,120 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useFilterContext } from '../context/filter_context'
-import { getUniqueValues, formatPrice } from '../utils/helpers'
-import { FaCheck } from 'react-icons/fa'
+import React from 'react';
+import styled from 'styled-components';
+import { useFilterContext } from '../context/filter_context';
+import { getUniqueValues, formatPrice } from '../utils/helpers';
+import { FaCheck } from 'react-icons/fa';
 
 const Filters = () => {
-  return <h4>filters</h4>
-}
+  return (
+    <Wrapper>
+      <div className="content">
+        <form>
+          <div className="form-control">
+            <input
+              type="text"
+              name="text"
+              placeholder="search"
+              className="search-input"
+              value=""
+            />
+          </div>
+          <div className="form-control">
+            <h5>category</h5>
+            <div>
+              <button type="button" name="category" className="null">
+                all
+              </button>
+              <button type="button" name="category" className="null">
+                office
+              </button>
+              <button type="button" name="category" className="active">
+                living room
+              </button>
+              <button type="button" name="category" className="null">
+                kitchen
+              </button>
+              <button type="button" name="category" className="null">
+                bedroom
+              </button>
+              <button type="button" name="category" className="null">
+                dining
+              </button>
+              <button type="button" name="category" className="null">
+                kids
+              </button>
+            </div>
+          </div>
+          <div className="form-control">
+            <h5>company</h5>
+            <select name="company" className="company">
+              <option value="all">all</option>
+              <option value="marcos">marcos</option>
+              <option value="liddy">liddy</option>
+              <option value="ikea">ikea</option>
+              <option value="caressa">caressa</option>
+            </select>
+          </div>
+          <div className="form-control">
+            <h5>colors</h5>
+            <div className="colors">
+              <button name="color" data-color="all" className="all-btn active">
+                all
+              </button>
+              <button
+                name="color"
+                className="color-btn"
+                data-color="#ff0000"
+                style={{ background: 'rgb(255, 0, 0)' }}
+              ></button>
+              <button
+                name="color"
+                className="color-btn"
+                data-color="#00ff00"
+                style={{ background: 'rgb(0, 255, 0)' }}
+              ></button>
+              <button
+                name="color"
+                className="color-btn"
+                data-color="#0000ff"
+                style={{ background: 'rgb(0, 0, 255)' }}
+              ></button>
+              <button
+                name="color"
+                className="color-btn"
+                data-color="#000"
+                style={{ background: 'rgb(0, 0, 0)' }}
+              ></button>
+              <button
+                name="color"
+                className="color-btn"
+                data-color="#ffb900"
+                style={{ background: 'rgb(255, 185, 0)' }}
+              ></button>
+            </div>
+          </div>
+          <div className="form-control">
+            <h5>price</h5>
+            <p className="price">$3,099.99</p>
+            <input
+              type="range"
+              name="price"
+              min="0"
+              max="309999"
+              value="309999"
+            />
+          </div>
+          <div className="form-control shipping">
+            <label for="shipping">free shipping</label>
+            <input type="checkbox" name="shipping" id="shipping" />
+          </div>
+        </form>
+        <button type="button" className="clear-btn">
+          clear filters
+        </button>
+      </div>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
   .form-control {
@@ -106,6 +214,6 @@ const Wrapper = styled.section`
       top: 1rem;
     }
   }
-`
+`;
 
-export default Filters
+export default Filters;
