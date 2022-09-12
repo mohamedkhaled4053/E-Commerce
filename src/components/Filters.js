@@ -94,6 +94,7 @@ const Filters = () => {
               min={minPrice}
               max={maxPrice}
               value={price}
+              onChange={(e)=>updateFilters(e.target.name, Number(e.target.value))}
             />
           </div>
           <div className="form-control shipping">

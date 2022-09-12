@@ -74,6 +74,8 @@ const filter_reducer = (state, action) => {
       filteredProducts = filteredProducts.filter(product=> product.colors.includes(color))
     }
     
+    filteredProducts = filteredProducts.filter(product=> product.price <= price)
+
     return {...state, filteredProducts}
   }
 
