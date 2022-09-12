@@ -23,7 +23,7 @@ const initialState = {
     text: '',
     category: 'all',
     company: 'all',
-    colors: 'all',
+    color: 'all',
     price: 90,
     shipping: false
   }
@@ -55,8 +55,9 @@ export const FilterProvider = ({ children }) => {
   },[products])
 
   useEffect(()=>{
+    dispatch({type: FILTER_PRODUCTS })
     dispatch({type: SORT_PRODUCTS})
-  },[products ,state.sort])
+  },[products ,state.sort, state.filters])
 
   return (
     <FilterContext.Provider value={{...state, setGridView, setListView, updateSort, updateFilters}}>

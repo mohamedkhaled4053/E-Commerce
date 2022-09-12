@@ -57,6 +57,14 @@ const filter_reducer = (state, action) => {
     let {name ,value} = action.payload
     return { ...state, filters: {...state.filters, [name]: value} };
   }
+  if (action.type === FILTER_PRODUCTS) {
+    let { text, category, company, color, price, shipping } = state.filters;
+    let filteredProducts = [...state.products]
+    if (text) {
+      filteredProducts = filteredProducts.filter(product=> product.name.toLowerCase().startsWith(text.toLowerCase()))
+    }
+    return {...state, filteredProducts}
+  }
 
   throw new Error(`No Matching "${action.type}" - action type`);
 };

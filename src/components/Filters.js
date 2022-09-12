@@ -5,18 +5,21 @@ import { getUniqueValues, formatPrice } from '../utils/helpers';
 import { FaCheck } from 'react-icons/fa';
 
 const Filters = () => {
-  let {filter, updateFilters} = useFilterContext()
+  let { filters, updateFilters } = useFilterContext();
+  let { text, category, company, color, price, shipping } = filters;
+
   return (
     <Wrapper>
       <div className="content">
-        <form>
+        <form onSubmit={(e)=>e.preventDefault()}>
           <div className="form-control">
             <input
               type="text"
               name="text"
               placeholder="search"
               className="search-input"
-              value=""
+              value={text}
+              onChange={(e)=>updateFilters(e.target.name, e.target.value)}
             />
           </div>
           <div className="form-control">
