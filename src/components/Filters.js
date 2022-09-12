@@ -5,8 +5,12 @@ import { getUniqueValues, formatPrice } from '../utils/helpers';
 import { FaCheck } from 'react-icons/fa';
 
 const Filters = () => {
-  let { filters, updateFilters } = useFilterContext();
+  let { filters, updateFilters, products } = useFilterContext();
   let { text, category, company, color, price, shipping } = filters;
+
+  let categories = getUniqueValues(products,'category')
+  let companies = getUniqueValues(products,'company')
+  let colors = getUniqueValues(products,'colors')
 
   return (
     <Wrapper>
