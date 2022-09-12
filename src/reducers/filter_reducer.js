@@ -63,9 +63,13 @@ const filter_reducer = (state, action) => {
     if (text) {
       filteredProducts = filteredProducts.filter(product=> product.name.toLowerCase().startsWith(text.toLowerCase()))
     }
-    if (category && category !=='all') {
+    if (category !=='all') {
       filteredProducts = filteredProducts.filter(product=> product.category === category)
     }
+    if (company !=='all') {
+      filteredProducts = filteredProducts.filter(product=> product.company === company)
+    }
+    
     return {...state, filteredProducts}
   }
 

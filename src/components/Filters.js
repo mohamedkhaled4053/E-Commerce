@@ -30,7 +30,15 @@ const Filters = () => {
             <h5>category</h5>
             <div>
               {categories.map((c, index) => (
-                <button key={index} type="button" name="category" className={c===category && 'active'} onClick={(e)=>updateFilters(e.target.name,e.target.textContent)}>
+                <button
+                  key={index}
+                  type="button"
+                  name="category"
+                  className={c === category && 'active'}
+                  onClick={(e) =>
+                    updateFilters(e.target.name, e.target.textContent)
+                  }
+                >
                   {c}
                 </button>
               ))}
@@ -38,12 +46,14 @@ const Filters = () => {
           </div>
           <div className="form-control">
             <h5>company</h5>
-            <select name="company" className="company">
-              <option value="all">all</option>
-              <option value="marcos">marcos</option>
-              <option value="liddy">liddy</option>
-              <option value="ikea">ikea</option>
-              <option value="caressa">caressa</option>
+            <select
+              name="company"
+              className="company"
+              onChange={(e) => updateFilters(e.target.name, e.target.value)}
+            >
+              {companies.map((company) => (
+                <option value={company}>{company}</option>
+              ))}
             </select>
           </div>
           <div className="form-control">
