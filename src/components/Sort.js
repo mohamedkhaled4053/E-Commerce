@@ -3,13 +3,14 @@ import { useFilterContext } from '../context/filter_context';
 import { BsFillGridFill, BsList } from 'react-icons/bs';
 import styled from 'styled-components';
 const Sort = () => {
+  let {layout} = useFilterContext()
   return (
     <Wrapper>
       <div className="btn-container">
-        <button className="active">
+        <button className={layout === 'grid-view' && 'active'} >
           <BsFillGridFill />
         </button>
-        <button className="null">
+        <button className={layout === 'list-view' && 'active'}>
           <BsList />
         </button>
       </div>
