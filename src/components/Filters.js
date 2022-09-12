@@ -99,7 +99,7 @@ const Filters = () => {
           </div>
           <div className="form-control shipping">
             <label for="shipping">free shipping</label>
-            <input type="checkbox" name="shipping" id="shipping" />
+            <input type="checkbox" name="shipping" id="shipping" checked={shipping} onClick={(e)=>updateFilters(e.target.name, e.target.checked)}/>
           </div>
         </form>
         <button type="button" className="clear-btn">
