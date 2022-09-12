@@ -12,11 +12,16 @@ import {
 } from '../actions'
 import { useProductsContext } from './products_context'
 
-const initialState = {}
+const initialState = {
+
+}
 
 const FilterContext = React.createContext()
 
 export const FilterProvider = ({ children }) => {
+  let {products} = useProductsContext()
+  let [state, dispatch] = useReducer(reducer, initialState)
+
   return (
     <FilterContext.Provider value='filter context'>
       {children}
