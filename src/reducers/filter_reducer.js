@@ -69,6 +69,9 @@ const filter_reducer = (state, action) => {
     if (company !=='all') {
       filteredProducts = filteredProducts.filter(product=> product.company === company)
     }
+    if (color !=='all') {
+      filteredProducts = filteredProducts.filter(product=> product.colors.includes(color))
+    }
     
     return {...state, filteredProducts}
   }

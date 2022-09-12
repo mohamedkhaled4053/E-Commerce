@@ -49,6 +49,7 @@ const Filters = () => {
             <select
               name="company"
               className="company"
+              value={company}
               onChange={(e) => updateFilters(e.target.name, e.target.value)}
             >
               {companies.map((company) => (
@@ -59,39 +60,29 @@ const Filters = () => {
           <div className="form-control">
             <h5>colors</h5>
             <div className="colors">
-              <button name="color" data-color="all" className="all-btn active">
+              <button
+                name="color"
+                data-color="all"
+                className={`all-btn ${color === 'all' && 'active'}`}
+                onClick={(e) =>
+                  updateFilters(e.target.name, e.target.dataset.color)
+                }
+              >
                 all
               </button>
-              <button
-                name="color"
-                className="color-btn"
-                data-color="#ff0000"
-                style={{ background: 'rgb(255, 0, 0)' }}
-              ></button>
-              <button
-                name="color"
-                className="color-btn"
-                data-color="#00ff00"
-                style={{ background: 'rgb(0, 255, 0)' }}
-              ></button>
-              <button
-                name="color"
-                className="color-btn"
-                data-color="#0000ff"
-                style={{ background: 'rgb(0, 0, 255)' }}
-              ></button>
-              <button
-                name="color"
-                className="color-btn"
-                data-color="#000"
-                style={{ background: 'rgb(0, 0, 0)' }}
-              ></button>
-              <button
-                name="color"
-                className="color-btn"
-                data-color="#ffb900"
-                style={{ background: 'rgb(255, 185, 0)' }}
-              ></button>
+              {colors.map((c) => (
+                <button
+                  name="color"
+                  className={`color-btn ${c === color && 'active'}`}
+                  data-color={c}
+                  style={{ background: c }}
+                  onClick={(e) =>
+                    updateFilters(e.target.name, e.target.dataset.color)
+                  }
+                >
+                  {c === color && <FaCheck />}
+                </button>
+              ))}
             </div>
           </div>
           <div className="form-control">
