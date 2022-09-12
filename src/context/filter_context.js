@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useReducer } from 'react'
-import reducer from '../reducers/filter_reducer'
+import React, { useEffect, useContext, useReducer } from 'react';
+import reducer from '../reducers/filter_reducer';
 import {
   LOAD_PRODUCTS,
   SET_GRIDVIEW,
@@ -9,8 +9,8 @@ import {
   UPDATE_FILTERS,
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
-} from '../actions'
-import { useProductsContext } from './products_context'
+} from '../actions';
+import { useProductsContext } from './products_context';
 
 const initialState = {
   products: [],
@@ -25,47 +25,49 @@ const initialState = {
     company: 'all',
     color: 'all',
     price: 0,
-    shipping: false
-  }
-}
+    shipping: false,
+  },
+};
 
-const FilterContext = React.createContext()
+const FilterContext = React.createContext();
 
 export const FilterProvider = ({ children }) => {
-  let {products} = useProductsContext()
-  let [state, dispatch] = useReducer(reducer, initialState)
+  let { products } = useProductsContext();
+  let [state, dispatch] = useReducer(reducer, initialState);
 
   // helper funtions
   function setGridView() {
-    dispatch({type: SET_GRIDVIEW})
+    dispatch({ type: SET_GRIDVIEW });
   }
   function setListView() {
-    dispatch({type: SET_LISTVIEW})
+    dispatch({ type: SET_LISTVIEW });
   }
   function updateSort(sort) {
-    dispatch({type: UPDATE_SORT, payload: sort})
+    dispatch({ type: UPDATE_SORT, payload: sort });
   }
   function updateFilters(name, value) {
-    dispatch({type: UPDATE_FILTERS, payload: {name, value}})
+    dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   }
 
   // effects
-  useEffect(()=>{
-    dispatch({type: LOAD_PRODUCTS, payload: products})
-  },[products])
+  useEffect(() => {
+    dispatch({ type: LOAD_PRODUCTS, payload: products });
+  }, [products]);
 
-  useEffect(()=>{
-    dispatch({type: FILTER_PRODUCTS })
-    dispatch({type: SORT_PRODUCTS})
-  },[products ,state.sort, state.filters])
+  useEffect(() => {
+    dispatch({ type: FILTER_PRODUCTS });
+    dispatch({ type: SORT_PRODUCTS });
+  }, [products, state.sort, state.filters]);
 
   return (
-    <FilterContext.Provider value={{...state, setGridView, setListView, updateSort, updateFilters}}>
+    <FilterContext.Provider
+      value={{ ...state, setGridView, setListView, updateSort, updateFilters }}
+    >
       {children}
     </FilterContext.Provider>
-  )
-}
+  );
+};
 // make sure use
 export const useFilterContext = () => {
-  return useContext(FilterContext)
-}
+  return useContext(FilterContext);
+};

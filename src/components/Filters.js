@@ -5,7 +5,8 @@ import { getUniqueValues, formatPrice } from '../utils/helpers';
 import { FaCheck } from 'react-icons/fa';
 
 const Filters = () => {
-  let { filters, updateFilters, products, minPrice, maxPrice} = useFilterContext();
+  let { filters, updateFilters, products, minPrice, maxPrice } =
+    useFilterContext();
   let { text, category, company, color, price, shipping } = filters;
 
   let categories = getUniqueValues(products, 'category');
@@ -94,12 +95,20 @@ const Filters = () => {
               min={minPrice}
               max={maxPrice}
               value={price}
-              onChange={(e)=>updateFilters(e.target.name, Number(e.target.value))}
+              onChange={(e) =>
+                updateFilters(e.target.name, Number(e.target.value))
+              }
             />
           </div>
           <div className="form-control shipping">
             <label for="shipping">free shipping</label>
-            <input type="checkbox" name="shipping" id="shipping" checked={shipping} onClick={(e)=>updateFilters(e.target.name, e.target.checked)}/>
+            <input
+              type="checkbox"
+              name="shipping"
+              id="shipping"
+              checked={shipping}
+              onClick={(e) => updateFilters(e.target.name, e.target.checked)}
+            />
           </div>
         </form>
         <button type="button" className="clear-btn">

@@ -11,14 +11,14 @@ import {
 
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
-    let maxPrice
-    if(action.payload.length > 0){
-       maxPrice = action.payload.reduce((max, product)=>{
-        if(product.price > max){
-          return product.price
+    let maxPrice;
+    if (action.payload.length > 0) {
+      maxPrice = action.payload.reduce((max, product) => {
+        if (product.price > max) {
+          return product.price;
         }
-        return max
-      },0)
+        return max;
+      }, 0);
     }
 
     return {
@@ -26,7 +26,7 @@ const filter_reducer = (state, action) => {
       products: action.payload,
       filteredProducts: [...action.payload],
       maxPrice,
-      filters:{...state.filters, price: maxPrice}
+      filters: { ...state.filters, price: maxPrice },
     };
   }
   if (action.type === SET_GRIDVIEW) {
@@ -55,31 +55,41 @@ const filter_reducer = (state, action) => {
     return { ...state, filteredProducts: newProducts };
   }
   if (action.type === UPDATE_FILTERS) {
-    let {name ,value} = action.payload
-    return { ...state, filters: {...state.filters, [name]: value} };
+    let { name, value } = action.payload;
+    return { ...state, filters: { ...state.filters, [name]: value } };
   }
   if (action.type === FILTER_PRODUCTS) {
     let { text, category, company, color, price, shipping } = state.filters;
-    let filteredProducts = [...state.products]
+    let filteredProducts = [...state.products];
     if (text) {
-      filteredProducts = filteredProducts.filter(product=> product.name.toLowerCase().startsWith(text.toLowerCase()))
+      filteredProducts = filteredProducts.filter((product) =>
+        product.name.toLowerCase().startsWith(text.toLowerCase())
+      );
     }
-    if (category !=='all') {
-      filteredProducts = filteredProducts.filter(product=> product.category === category)
+    if (category !== 'all') {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.category === category
+      );
     }
-    if (company !=='all') {
-      filteredProducts = filteredProducts.filter(product=> product.company === company)
+    if (company !== 'all') {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.company === company
+      );
     }
-    if (color !=='all') {
-      filteredProducts = filteredProducts.filter(product=> product.colors.includes(color))
+    if (color !== 'all') {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.colors.includes(color)
+      );
     }
-    filteredProducts = filteredProducts.filter(product=> product.price <= price)
+    filteredProducts = filteredProducts.filter(
+      (product) => product.price <= price
+    );
 
     if (shipping) {
-    filteredProducts = filteredProducts.filter(product=> product.shipping)
+      filteredProducts = filteredProducts.filter((product) => product.shipping);
     }
 
-    return {...state, filteredProducts}
+    return { ...state, filteredProducts };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);
