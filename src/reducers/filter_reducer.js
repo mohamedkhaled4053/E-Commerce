@@ -11,10 +11,21 @@ import {
 
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
+    let maxPrice
+    if(action.payload.length > 0){
+       maxPrice = action.payload.reduce((max, product)=>{
+        if(product > max){
+          return product
+        }
+        return max
+      })
+    }
+
     return {
       ...state,
       products: action.payload,
       filteredProducts: [...action.payload],
+      maxPrice
     };
   }
   if (action.type === SET_GRIDVIEW) {
