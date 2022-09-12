@@ -5,7 +5,7 @@ import { getUniqueValues, formatPrice } from '../utils/helpers';
 import { FaCheck } from 'react-icons/fa';
 
 const Filters = () => {
-  let { filters, updateFilters, products } = useFilterContext();
+  let { filters, updateFilters, products, minPrice, maxPrice} = useFilterContext();
   let { text, category, company, color, price, shipping } = filters;
 
   let categories = getUniqueValues(products, 'category');
@@ -87,13 +87,13 @@ const Filters = () => {
           </div>
           <div className="form-control">
             <h5>price</h5>
-            <p className="price">$3,099.99</p>
+            <p className="price">{formatPrice(price)}</p>
             <input
               type="range"
               name="price"
-              min="0"
-              max="309999"
-              value="309999"
+              min={minPrice}
+              max={maxPrice}
+              value={price}
             />
           </div>
           <div className="form-control shipping">

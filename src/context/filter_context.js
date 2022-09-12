@@ -24,7 +24,7 @@ const initialState = {
     category: 'all',
     company: 'all',
     color: 'all',
-    price: 90,
+    price: 0,
     shipping: false
   }
 }

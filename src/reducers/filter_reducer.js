@@ -14,18 +14,19 @@ const filter_reducer = (state, action) => {
     let maxPrice
     if(action.payload.length > 0){
        maxPrice = action.payload.reduce((max, product)=>{
-        if(product > max){
-          return product
+        if(product.price > max){
+          return product.price
         }
         return max
-      })
+      },0)
     }
 
     return {
       ...state,
       products: action.payload,
       filteredProducts: [...action.payload],
-      maxPrice
+      maxPrice,
+      filters:{...state.filters, price: maxPrice}
     };
   }
   if (action.type === SET_GRIDVIEW) {
