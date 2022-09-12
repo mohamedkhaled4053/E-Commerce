@@ -1,7 +1,7 @@
 import React from 'react';
-const Error = () => {
+const Error = ({page}) => {
   return (
-    <div class="section section-center text-center">
+    <div className={`section section-center text-center ${page && 'page'}`}>
       <h2>there was an error...</h2>
     </div>
   );

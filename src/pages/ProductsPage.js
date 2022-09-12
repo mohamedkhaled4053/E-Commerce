@@ -17,9 +17,9 @@ const ProductsPage = () => {
     <main>
       <PageHero title="products" />
       {loading ? (
-        <Loading />
+        <Loading page/>
       ) : error ? (
-        <Error/>
+        <Error page/>
       ) : (
         <Wrapper className="page">
           <div className="section-center products">

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Loading = () => {
+const Loading = ({page}) => {
   return (
-    <div className="section section-center">
+    <div className={`section section-center ${page &&'page'}`}>
       <div className="loading"></div>
     </div>
   );
