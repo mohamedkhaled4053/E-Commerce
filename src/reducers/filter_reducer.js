@@ -26,6 +26,23 @@ const filter_reducer = (state, action) => {
   if (action.type === UPDATE_SORT) {
     return { ...state, sort: action.payload };
   }
+  if (action.type === SORT_PRODUCTS) {
+    let newProducts = [...state.filteredProducts];
+    if (state.sort === 'price-lowest') {
+      newProducts.sort((a, b) => a.price - b.price);
+    }
+    if (state.sort === 'price-highest') {
+      newProducts.sort((a, b) => b.price - a.price);
+    }
+    if (state.sort === 'name-a') {
+      newProducts.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    if (state.sort === 'name-z') {
+      newProducts.sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    return { ...state, filteredProducts: newProducts };
+  }
 
   throw new Error(`No Matching "${action.type}" - action type`);
 };
