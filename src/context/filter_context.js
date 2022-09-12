@@ -48,6 +48,9 @@ export const FilterProvider = ({ children }) => {
   function updateFilters(name, value) {
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   }
+  function clearFilters(name, value) {
+    dispatch({ type: CLEAR_FILTERS });
+  }
 
   // effects
   useEffect(() => {
@@ -61,7 +64,7 @@ export const FilterProvider = ({ children }) => {
 
   return (
     <FilterContext.Provider
-      value={{ ...state, setGridView, setListView, updateSort, updateFilters }}
+      value={{ ...state, setGridView, setListView, updateSort, updateFilters, clearFilters }}
     >
       {children}
     </FilterContext.Provider>

@@ -5,7 +5,7 @@ import { getUniqueValues, formatPrice } from '../utils/helpers';
 import { FaCheck } from 'react-icons/fa';
 
 const Filters = () => {
-  let { filters, updateFilters, products, minPrice, maxPrice } =
+  let { filters, updateFilters, products, minPrice, maxPrice, clearFilters } =
     useFilterContext();
   let { text, category, company, color, price, shipping } = filters;
 
@@ -111,7 +111,7 @@ const Filters = () => {
             />
           </div>
         </form>
-        <button type="button" className="clear-btn">
+        <button type="button" className="clear-btn" onClick={clearFilters}>
           clear filters
         </button>
       </div>
