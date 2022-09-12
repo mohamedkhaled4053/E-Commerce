@@ -8,14 +8,14 @@ const Filters = () => {
   let { filters, updateFilters, products } = useFilterContext();
   let { text, category, company, color, price, shipping } = filters;
 
-  let categories = getUniqueValues(products,'category')
-  let companies = getUniqueValues(products,'company')
-  let colors = getUniqueValues(products,'colors')
+  let categories = getUniqueValues(products, 'category');
+  let companies = getUniqueValues(products, 'company');
+  let colors = getUniqueValues(products, 'colors');
 
   return (
     <Wrapper>
       <div className="content">
-        <form onSubmit={(e)=>e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="form-control">
             <input
               type="text"
@@ -23,33 +23,17 @@ const Filters = () => {
               placeholder="search"
               className="search-input"
               value={text}
-              onChange={(e)=>updateFilters(e.target.name, e.target.value)}
+              onChange={(e) => updateFilters(e.target.name, e.target.value)}
             />
           </div>
           <div className="form-control">
             <h5>category</h5>
             <div>
-              <button type="button" name="category" className="null">
-                all
-              </button>
-              <button type="button" name="category" className="null">
-                office
-              </button>
-              <button type="button" name="category" className="active">
-                living room
-              </button>
-              <button type="button" name="category" className="null">
-                kitchen
-              </button>
-              <button type="button" name="category" className="null">
-                bedroom
-              </button>
-              <button type="button" name="category" className="null">
-                dining
-              </button>
-              <button type="button" name="category" className="null">
-                kids
-              </button>
+              {categories.map((c, index) => (
+                <button key={index} type="button" name="category" className={c===category && 'active'} onClick={(e)=>updateFilters(e.target.name,e.target.textContent)}>
+                  {c}
+                </button>
+              ))}
             </div>
           </div>
           <div className="form-control">
