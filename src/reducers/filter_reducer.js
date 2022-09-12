@@ -11,11 +11,15 @@ import {
 
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
-    return {
-      ...state,
-      products: action.payload,
-    };
+    return { ...state, products: action.payload };
   }
+  if (action.type === SET_GRIDVIEW) {
+    return { ...state, layout: 'grid-view'};
+  }
+  if (action.type === SET_LISTVIEW) {
+    return { ...state, layout: 'list-view'};
+  }
+
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 
