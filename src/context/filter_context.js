@@ -14,6 +14,7 @@ import { useProductsContext } from './products_context'
 
 const initialState = {
   products: [],
+  filteredProducts: [],
   layout: 'grid-view',
   sort: 'price-lowest'
 }
@@ -24,6 +25,7 @@ export const FilterProvider = ({ children }) => {
   let {products} = useProductsContext()
   let [state, dispatch] = useReducer(reducer, initialState)
 
+  // helper funtions
   function setGridView() {
     dispatch({type: SET_GRIDVIEW})
   }
@@ -34,6 +36,7 @@ export const FilterProvider = ({ children }) => {
     dispatch({type: UPDATE_SORT, payload: sort})
   }
 
+  // effects
   useEffect(()=>{
     dispatch({type: LOAD_PRODUCTS, payload: products})
   },[products])
