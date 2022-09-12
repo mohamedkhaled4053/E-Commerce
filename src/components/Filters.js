@@ -5,6 +5,7 @@ import { getUniqueValues, formatPrice } from '../utils/helpers';
 import { FaCheck } from 'react-icons/fa';
 
 const Filters = () => {
+  let {filter, updateFilters} = useFilterContext()
   return (
     <Wrapper>
       <div className="content">

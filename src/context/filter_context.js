@@ -45,6 +45,9 @@ export const FilterProvider = ({ children }) => {
   function updateSort(sort) {
     dispatch({type: UPDATE_SORT, payload: sort})
   }
+  function updateFilters(name, value) {
+    dispatch({type: UPDATE_FILTERS, payload: {name, value}})
+  }
 
   // effects
   useEffect(()=>{
@@ -56,7 +59,7 @@ export const FilterProvider = ({ children }) => {
   },[products ,state.sort])
 
   return (
-    <FilterContext.Provider value={{...state, setGridView, setListView, updateSort}}>
+    <FilterContext.Provider value={{...state, setGridView, setListView, updateSort, updateFilters}}>
       {children}
     </FilterContext.Provider>
   )
