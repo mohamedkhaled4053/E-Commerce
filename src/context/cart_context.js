@@ -17,10 +17,15 @@ const CartContext = React.createContext();
 export const CartProvider = ({ children }) => {
   let [state, dispatch] = useReducer(reducer, initialState);
 
-
+  function addToCart(id, amount, color, product) {
+    console.log( product);
+    dispatch({ type: ADD_TO_CART, payload: { id, amount, color, product } });
+  }
 
   return (
-    <CartContext.Provider value={{ ...state }}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{...state,addToCart}}>
+      {children}
+    </CartContext.Provider>
   );
 };
 // make sure use

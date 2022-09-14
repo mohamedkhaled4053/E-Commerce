@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 const SingleProductPage = () => {
   let {
     fetchSingleProduct,
-    singleProduct: prodcut,
+    singleProduct: product,
     singleProductLoading: loading,
     singleProductError: error,
   } = useProductsContext();
@@ -52,11 +52,11 @@ const SingleProductPage = () => {
     name,
     description,
     company,
-  } = prodcut;
+  } = product;
 
   return (
     <Wrapper>
-      <PageHero title={name} prodcut/>
+      <PageHero title={name} product/>
       <div className="section section-center page">
         <Link className="btn" to="/products">
           back to products
@@ -80,7 +80,7 @@ const SingleProductPage = () => {
               <span>Brand : </span>{company}
             </p>
             <hr />
-            <AddToCart {...prodcut}/>
+            <AddToCart product={product} />
           </section>
         </div>
       </div>
