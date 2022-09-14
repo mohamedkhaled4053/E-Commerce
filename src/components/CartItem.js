@@ -4,7 +4,7 @@ import { formatPrice } from '../utils/helpers';
 import AmountButtons from './AmountButtons';
 import { FaTrash } from 'react-icons/fa';
 import { useCartContext } from '../context/cart_context';
-const CartItem = ({ id, name, image, price, color, amount, max, sku }) => {
+const CartItem = ({ id, name, image, price, color, amount, sku }) => {
   let { deleteItem, toggleAmount } = useCartContext();
   return (
     <Wrapper>
@@ -21,8 +21,8 @@ const CartItem = ({ id, name, image, price, color, amount, max, sku }) => {
       <h5 className="price">{formatPrice(price)}</h5>
       <AmountButtons
         amount={amount}
-        increase={() => toggleAmount('increase',id)}
-        decrease={() => toggleAmount('decrease',id)}
+        increase={() => toggleAmount('increase',id,sku)}
+        decrease={() => toggleAmount('decrease',id,sku)}
       />
       <h5 className="subtotal">{formatPrice(price * amount)}</h5>
       <button className="remove-btn" onClick={() => deleteItem(id)}>

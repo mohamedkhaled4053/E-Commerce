@@ -11,7 +11,7 @@ const AddToCart = ({ product }) => {
   let [amount, setAmount] = useState(1);
   let [alert, setAlert] = useState('');
 
-  let { addToCart } = useCartContext();
+  let { addToCart, cart } = useCartContext();
 
   function increase() {
     setAlert('');
@@ -30,6 +30,12 @@ const AddToCart = ({ product }) => {
       setAlert("can't be less than one");
     }
   }
+
+  cart.forEach(item => {
+    if (item.sku === product.id) {
+      stock -= item.amount
+    }
+  })
 
   if (stock < 1) {
     return (

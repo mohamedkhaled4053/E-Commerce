@@ -40,12 +40,6 @@ const SingleProductPage = () => {
     return <Error />;
   }
 
-  cart.forEach(item => {
-    if (item.sku === product.id) {
-      product.stock -= item.amount
-    }
-  })
-
   let {
     id: sku,
     stock,

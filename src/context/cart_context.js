@@ -35,7 +35,7 @@ export const CartProvider = ({ children }) => {
         name,
         price,
         image: images[0].url,
-        max: stock,
+        stock
       };
       newCart = [...cart, newItem];
     }
@@ -52,13 +52,23 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   }
 
-  function toggleAmount(type, id) {
+  function toggleAmount(type, id, sku) {
     // find target item then increase or decrease it
     let  newCart = cart.map((item) => {
         if (item.id === id) {
           if (type === 'increase') {
-            if (item.amount >= item.max) {
-              return { ...item, amount: item.max };
+            
+            let totalAmountOfKind = cart.reduce((total, item)=> {
+              if (item.sku === sku) {
+                total += item.amount
+              }
+              return total
+            },0)
+
+            let allowedIncrease = item.stock - totalAmountOfKind
+
+            if ( allowedIncrease <= 0) {
+              return item
             }
             return { ...item, amount: item.amount + 1 };
           } else {
