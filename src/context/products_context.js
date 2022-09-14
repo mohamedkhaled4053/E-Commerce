@@ -51,7 +51,9 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     fetch(productUrl)
       .then((res) => res.json())
-      .then((res) => dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: res }))
+      .then((res) =>
+        dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: res })
+      )
       .catch((err) => dispatch({ type: GET_SINGLE_PRODUCT_ERROR }));
   }
 
@@ -61,7 +63,9 @@ export const ProductsProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct }}>
+    <ProductsContext.Provider
+      value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct }}
+    >
       {children}
     </ProductsContext.Provider>
   );

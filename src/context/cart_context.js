@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
 
-
 const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
@@ -28,7 +27,7 @@ export const CartProvider = ({ children }) => {
         name,
         price,
         image: images[0].url,
-        stock
+        stock,
       };
       newCart = [...cart, newItem];
     }
@@ -47,35 +46,34 @@ export const CartProvider = ({ children }) => {
 
   function toggleAmount(type, id, sku) {
     // find target item then increase or decrease it
-    let  newCart = cart.map((item) => {
-        if (item.id === id) {
-          if (type === 'increase') {
-            
-            let totalAmountOfKind = cart.reduce((total, item)=> {
-              if (item.sku === sku) {
-                total += item.amount
-              }
-              return total
-            },0)
-
-            let allowedIncrease = item.stock - totalAmountOfKind
-
-            if ( allowedIncrease <= 0) {
-              return item
+    let newCart = cart.map((item) => {
+      if (item.id === id) {
+        if (type === 'increase') {
+          let totalAmountOfKind = cart.reduce((total, item) => {
+            if (item.sku === sku) {
+              total += item.amount;
             }
-            return { ...item, amount: item.amount + 1 };
-          } else {
-            // prevent amount to be less than 1
-            if (item.amount <= 1) {
-              return { ...item, amount: 1 };
-            }
-            return { ...item, amount: item.amount - 1 };
+            return total;
+          }, 0);
+
+          let allowedIncrease = item.stock - totalAmountOfKind;
+
+          if (allowedIncrease <= 0) {
+            return item;
           }
+          return { ...item, amount: item.amount + 1 };
         } else {
-          return item;
+          // prevent amount to be less than 1
+          if (item.amount <= 1) {
+            return { ...item, amount: 1 };
+          }
+          return { ...item, amount: item.amount - 1 };
         }
-      });
-      setCart(newCart)
+      } else {
+        return item;
+      }
+    });
+    setCart(newCart);
   }
 
   useEffect(() => {
