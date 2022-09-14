@@ -31,11 +31,11 @@ const AddToCart = ({ product }) => {
     }
   }
 
-  cart.forEach(item => {
+  cart.forEach((item) => {
     if (item.sku === product.id) {
-      stock -= item.amount
+      stock -= item.amount;
     }
-  })
+  });
 
   if (stock < 1) {
     return (

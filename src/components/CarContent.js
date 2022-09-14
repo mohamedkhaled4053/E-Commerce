@@ -9,7 +9,7 @@ import { getTotals } from '../utils/helpers';
 
 const CartContent = () => {
   let { cart, clearCart } = useCartContext();
-  let {totalPrice} = getTotals(cart)
+  let { totalPrice } = getTotals(cart);
 
   return (
     <Wrapper className="section section-center">
@@ -30,7 +30,7 @@ const CartContent = () => {
           clear shopping cart
         </button>
       </div>
-      <CartTotals totalPrice={totalPrice}/>
+      <CartTotals totalPrice={totalPrice} />
     </Wrapper>
   );
 };

@@ -6,14 +6,13 @@ import { FaTrash } from 'react-icons/fa';
 import { useCartContext } from '../context/cart_context';
 import { useNavigate } from 'react-router-dom';
 
-
 const CartItem = ({ id, name, image, price, color, amount, sku }) => {
   let { deleteItem, toggleAmount } = useCartContext();
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   function goToProductPage(e) {
-    if(e.target.nodeName === 'IMG' || e.target.nodeName === 'H5'){
-      navigate(`/products/${sku}`)
+    if (e.target.nodeName === 'IMG' || e.target.nodeName === 'H5') {
+      navigate(`/products/${sku}`);
     }
   }
   return (
@@ -31,8 +30,8 @@ const CartItem = ({ id, name, image, price, color, amount, sku }) => {
       <h5 className="price">{formatPrice(price)}</h5>
       <AmountButtons
         amount={amount}
-        increase={() => toggleAmount('increase',id,sku)}
-        decrease={() => toggleAmount('decrease',id,sku)}
+        increase={() => toggleAmount('increase', id, sku)}
+        decrease={() => toggleAmount('decrease', id, sku)}
       />
       <h5 className="subtotal">{formatPrice(price * amount)}</h5>
       <button className="remove-btn" onClick={() => deleteItem(id)}>
@@ -70,12 +69,12 @@ const Wrapper = styled.article`
     display: block;
     border-radius: var(--radius);
     object-fit: cover;
-    cursor: pointer
+    cursor: pointer;
   }
   h5 {
     font-size: 0.75rem;
     margin-bottom: 0;
-    cursor: pointer
+    cursor: pointer;
   }
 
   .color {

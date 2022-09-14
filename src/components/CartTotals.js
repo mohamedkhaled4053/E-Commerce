@@ -5,9 +5,8 @@ import { useUserContext } from '../context/user_context';
 import { formatPrice } from '../utils/helpers';
 import { Link } from 'react-router-dom';
 
-const CartTotals = ({totalPrice}) => {
-
-  let shippingFee = 534
+const CartTotals = ({ totalPrice }) => {
+  let shippingFee = 534;
   return (
     <Wrapper>
       <div>
