@@ -31,6 +31,14 @@ const AddToCart = ({ product }) => {
     }
   }
 
+  if (stock < 1) {
+    return (
+      <Wrapper>
+        <h5>this product is not available in stock for now</h5>
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
       <div className="colors">

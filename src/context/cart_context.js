@@ -26,9 +26,6 @@ export const CartProvider = ({ children }) => {
       let index = cart.indexOf(finded);
       newCart = [...cart];
       newCart[index].amount += amount;
-      if (newCart[index].amount > stock) {
-        newCart[index].amount = stock;
-      }
     } else {
       let newItem = {
         id: id + color,
@@ -40,9 +37,6 @@ export const CartProvider = ({ children }) => {
         image: images[0].url,
         max: stock,
       };
-      if (newItem.amount > stock) {
-        newItem.amount = stock;
-      }
       newCart = [...cart, newItem];
     }
 

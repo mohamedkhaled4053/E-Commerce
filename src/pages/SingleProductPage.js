@@ -13,6 +13,7 @@ import {
 } from '../components';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../context/cart_context';
 
 const SingleProductPage = () => {
   let {
@@ -21,6 +22,7 @@ const SingleProductPage = () => {
     singleProductLoading: loading,
     singleProductError: error,
   } = useProductsContext();
+  let {cart} = useCartContext()
 
   let { id } = useParams();
   let productUrl = url + id;
@@ -38,8 +40,14 @@ const SingleProductPage = () => {
     return <Error />;
   }
 
+  cart.forEach(item => {
+    if (item.sku === product.id) {
+      product.stock -= item.amount
+    }
+  })
+
   let {
-    id: SKU,
+    id: sku,
     stock,
     price,
     shipping,
@@ -74,7 +82,7 @@ const SingleProductPage = () => {
               <span>Available : </span>{stock > 0?'In stock':'Out Of Stock'}
             </p>
             <p className="info">
-              <span>SKU : </span>{SKU}
+              <span>SKU : </span>{sku}
             </p>
             <p className="info">
               <span>Brand : </span>{company}
