@@ -22,7 +22,6 @@ const SingleProductPage = () => {
     singleProductLoading: loading,
     singleProductError: error,
   } = useProductsContext();
-  let {cart} = useCartContext()
 
   let { id } = useParams();
   let productUrl = url + id;
