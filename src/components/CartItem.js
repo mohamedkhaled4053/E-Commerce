@@ -10,6 +10,7 @@ const CartItem = ({ id, name, image, price, color, amount, sku }) => {
   let { deleteItem, toggleAmount } = useCartContext();
   let navigate = useNavigate();
 
+  // navigate to product page when clicking its image or name
   function goToProductPage(e) {
     if (e.target.nodeName === 'IMG' || e.target.nodeName === 'H5') {
       navigate(`/products/${sku}`);

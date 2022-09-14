@@ -46,7 +46,7 @@ const Wrapper = styled.div`
   }
   h2.clean{
     color: black;
-    transition: 1s
+    transition: 1.5s
   }
 `;
 
