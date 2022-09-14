@@ -52,12 +52,37 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   }
 
+  function toggleAmount(type, id) {
+    // find target item then increase or decrease it
+    let  newCart = cart.map((item) => {
+        if (item.id === id) {
+          if (type === 'increase') {
+            if (item.amount >= item.max) {
+              return { ...item, amount: item.max };
+            }
+            return { ...item, amount: item.amount + 1 };
+          } else {
+            // prevent amount to be less than 1
+            if (item.amount <= 1) {
+              return { ...item, amount: 1 };
+            }
+            return { ...item, amount: item.amount - 1 };
+          }
+        } else {
+          return item;
+        }
+      });
+      setCart(newCart)
+  }
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, deleteItem, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, deleteItem, clearCart, toggleAmount }}
+    >
       {children}
     </CartContext.Provider>
   );
