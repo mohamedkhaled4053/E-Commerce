@@ -4,11 +4,21 @@ import { formatPrice } from '../utils/helpers';
 import AmountButtons from './AmountButtons';
 import { FaTrash } from 'react-icons/fa';
 import { useCartContext } from '../context/cart_context';
+import { useNavigate } from 'react-router-dom';
+
+
 const CartItem = ({ id, name, image, price, color, amount, sku }) => {
   let { deleteItem, toggleAmount } = useCartContext();
+  let navigate = useNavigate()
+
+  function goToProductPage(e) {
+    if(e.target.nodeName === 'IMG' || e.target.nodeName === 'H5'){
+      navigate(`/products/${sku}`)
+    }
+  }
   return (
     <Wrapper>
-      <div className="title">
+      <div className="title" onClick={goToProductPage}>
         <img src={image} alt={name} />
         <div>
           <h5 className="name">{name}</h5>
@@ -60,10 +70,12 @@ const Wrapper = styled.article`
     display: block;
     border-radius: var(--radius);
     object-fit: cover;
+    cursor: pointer
   }
   h5 {
     font-size: 0.75rem;
     margin-bottom: 0;
+    cursor: pointer
   }
 
   .color {
