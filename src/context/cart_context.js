@@ -32,12 +32,17 @@ export const CartProvider = ({ children }) => {
     setCart([...cart, newItem]);
   }
 
+  function deleteItem(id) {
+    let newCart = cart.filter(item=> item.id !== id)
+    setCart(newCart)
+  }
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart , deleteItem}}>
       {children}
     </CartContext.Provider>
   );
