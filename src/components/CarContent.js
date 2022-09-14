@@ -7,7 +7,7 @@ import CartItem from './CartItem';
 import CartTotals from './CartTotals';
 
 const CartContent = () => {
-  let {cart} = useCartContext()
+  let {cart, clearCart} = useCartContext()
   return (
     <Wrapper className="section section-center">
       <CartColumns />
@@ -17,7 +17,7 @@ const CartContent = () => {
         <Link className="link-btn" to="/products">
           continue shopping
         </Link>
-        <button type="button" className="link-btn clear-btn">
+        <button type="button" className="link-btn clear-btn" onClick={clearCart}>
           clear shopping cart
         </button>
       </div>
