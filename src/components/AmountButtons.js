@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { useCartContext } from '../context/cart_context';
 
-const AmountButtons = ({ amount, increase, decrease }) => {
+const AmountButtons = ({id, amount, increase, decrease }) => {
+  let {alertId} = useCartContext()
   return (
     <Wrapper className="amount-btsn">
       <button type="button" className="amount-btn" onClick={decrease}>
         <FaMinus />
       </button>
-      <h2 className="amount">{amount}</h2>
+      <h2 className={`amount ${alertId === id ? 'alert':'clean'}`}>{amount}</h2>
       <button type="button" className="amount-btn" onClick={increase}>
         <FaPlus />
       </button>
@@ -38,6 +40,13 @@ const Wrapper = styled.div`
   }
   h2 {
     margin-bottom: 0;
+  }
+  h2.alert{
+    color: red
+  }
+  h2.clean{
+    color: black;
+    transition: 1s
   }
 `;
 

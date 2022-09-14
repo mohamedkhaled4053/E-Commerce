@@ -29,6 +29,7 @@ const CartItem = ({ id, name, image, price, color, amount, sku }) => {
       </div>
       <h5 className="price">{formatPrice(price)}</h5>
       <AmountButtons
+        id={id}
         amount={amount}
         increase={() => toggleAmount('increase', id, sku)}
         decrease={() => toggleAmount('decrease', id, sku)}

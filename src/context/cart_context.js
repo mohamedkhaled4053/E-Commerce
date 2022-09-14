@@ -6,6 +6,7 @@ export const CartProvider = ({ children }) => {
   let [cart, setCart] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
   );
+  let [alertId, seAlertId] = useState(null);
 
   // helper funtions
   function addToCart(id, amount, color, product) {
@@ -59,14 +60,18 @@ export const CartProvider = ({ children }) => {
           let allowedIncrease = item.stock - totalAmountOfKind;
 
           if (allowedIncrease <= 0) {
+            seAlertId(id)
             return item;
           }
+          seAlertId(null)
           return { ...item, amount: item.amount + 1 };
         } else {
           // prevent amount to be less than 1
           if (item.amount <= 1) {
+            seAlertId(id)
             return { ...item, amount: 1 };
           }
+          seAlertId(null)
           return { ...item, amount: item.amount - 1 };
         }
       } else {
@@ -80,9 +85,13 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
+  useEffect(() => {
+    seAlertId(null)
+  }, [alertId]);
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, deleteItem, clearCart, toggleAmount }}
+      value={{ cart, addToCart, deleteItem, clearCart, toggleAmount, alertId }}
     >
       {children}
     </CartContext.Provider>
