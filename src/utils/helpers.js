@@ -20,3 +20,16 @@ export const getUniqueValues = (products, type) => {
   }
   return uniqe;
 };
+
+export function getTotals(cart) {
+  let totals = cart.reduce((total,item) => {
+    total.totalAmount += item.amount
+    total.totalPrice += item.price * item.amount
+    return total
+  }, {
+    totalAmount: 0,
+    totalPrice: 0,
+  });
+
+  return totals
+}

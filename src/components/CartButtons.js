@@ -5,16 +5,21 @@ import styled from 'styled-components';
 import { useProductsContext } from '../context/products_context';
 import { useCartContext } from '../context/cart_context';
 import { useUserContext } from '../context/user_context';
+import { getTotals } from '../utils/helpers';
 
 const CartButtons = () => {
-  let {closeSidebar} = useProductsContext()
+  let { closeSidebar } = useProductsContext();
+  let { cart } = useCartContext();
+
+  let { totalAmount } = getTotals(cart);
+
   return (
-    <Wrapper className='cart-btn-wrapper'>
+    <Wrapper className="cart-btn-wrapper">
       <Link className="cart-btn" to="/cart" onClick={closeSidebar}>
         Cart
         <span className="cart-container">
           <FaShoppingCart />
-          <span className="cart-value">2</span>
+          <span className="cart-value">{totalAmount}</span>
         </span>
       </Link>
       <button type="button" className="auth-btn">
