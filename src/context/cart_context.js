@@ -9,7 +9,7 @@ import {
 } from '../actions';
 
 const initialState = {
-  cart: [],
+  cart: JSON.parse(localStorage.getItem('cart')) || [],
 };
 
 const CartContext = React.createContext();
@@ -20,6 +20,10 @@ export const CartProvider = ({ children }) => {
   function addToCart(id, amount, color, product) {
     dispatch({ type: ADD_TO_CART, payload: { id, amount, color, product } });
   }
+
+  useEffect(()=>{
+    localStorage.setItem('cart',JSON.stringify(state.cart))
+  },[state.cart])
 
   return (
     <CartContext.Provider value={{...state,addToCart}}>

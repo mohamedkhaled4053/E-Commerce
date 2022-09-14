@@ -26,7 +26,6 @@ const cart_reducer = (state, action) => {
       max: stock,
     };
 
-
     return {...state, cart:[...state.cart, newItem]};
   }
 
