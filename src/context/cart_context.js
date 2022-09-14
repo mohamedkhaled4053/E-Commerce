@@ -19,18 +19,25 @@ export const CartProvider = ({ children }) => {
   function addToCart(id, amount, color, product) {
     let { name, price, images, stock } = product;
 
-    let newItem = {
-      id: id + color,
-      sku: id,
-      amount,
-      color,
-      name,
-      price,
-      image: images[0].url,
-      max: stock,
-    };
-
-    setCart([...cart, newItem]);
+    let finded = cart.find((item) => item.id === id + color);
+    if (finded) {
+      let index = cart.indexOf(finded);
+      let newCart = [...cart];
+      newCart[index].amount += amount;
+      setCart(newCart);
+    } else {
+      let newItem = {
+        id: id + color,
+        sku: id,
+        amount,
+        color,
+        name,
+        price,
+        image: images[0].url,
+        max: stock,
+      };
+      setCart([...cart, newItem]);
+    }
   }
 
   function deleteItem(id) {
