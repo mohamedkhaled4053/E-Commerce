@@ -14,7 +14,7 @@ export const CartProvider = ({ children }) => {
   let [cart, setCart] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
   );
-  
+
   // helper funtions
   function addToCart(id, amount, color, product) {
     let { name, price, images, stock } = product;
@@ -34,12 +34,12 @@ export const CartProvider = ({ children }) => {
   }
 
   function deleteItem(id) {
-    let newCart = cart.filter(item=> item.id !== id)
-    setCart(newCart)
+    let newCart = cart.filter((item) => item.id !== id);
+    setCart(newCart);
   }
 
   function clearCart() {
-    setCart([])
+    setCart([]);
   }
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart , deleteItem, clearCart}}>
+    <CartContext.Provider value={{ cart, addToCart, deleteItem, clearCart }}>
       {children}
     </CartContext.Provider>
   );
