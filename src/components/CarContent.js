@@ -7,13 +7,11 @@ import CartItem from './CartItem';
 import CartTotals from './CartTotals';
 
 const CartContent = () => {
+  let {cart} = useCartContext()
   return (
     <Wrapper className="section section-center">
       <CartColumns />
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
+      {cart.map(item=><CartItem {...item}/>)}
       <hr />
       <div className="link-container">
         <Link className="link-btn" to="/products">
