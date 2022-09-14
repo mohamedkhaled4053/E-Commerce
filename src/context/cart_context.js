@@ -20,11 +20,15 @@ export const CartProvider = ({ children }) => {
     let { name, price, images, stock } = product;
 
     let finded = cart.find((item) => item.id === id + color);
+    let newCart;
+
     if (finded) {
       let index = cart.indexOf(finded);
-      let newCart = [...cart];
+      newCart = [...cart];
       newCart[index].amount += amount;
-      setCart(newCart);
+      if (newCart[index].amount > stock) {
+        newCart[index].amount = stock;
+      }
     } else {
       let newItem = {
         id: id + color,
@@ -36,8 +40,13 @@ export const CartProvider = ({ children }) => {
         image: images[0].url,
         max: stock,
       };
-      setCart([...cart, newItem]);
+      if (newItem.amount > stock) {
+        newItem.amount = stock;
+      }
+      newCart = [...cart, newItem];
     }
+
+    setCart(newCart);
   }
 
   function deleteItem(id) {
