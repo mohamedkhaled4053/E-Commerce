@@ -1,12 +1,44 @@
-import React from 'react'
-import styled from 'styled-components'
-import { formatPrice } from '../utils/helpers'
-import AmountButtons from './AmountButtons'
-import { FaTrash } from 'react-icons/fa'
-import { useCartContext } from '../context/cart_context'
+import React from 'react';
+import styled from 'styled-components';
+import { formatPrice } from '../utils/helpers';
+import AmountButtons from './AmountButtons';
+import { FaTrash } from 'react-icons/fa';
+import { useCartContext } from '../context/cart_context';
 const CartItem = () => {
-  return <h4>cart item</h4>
-}
+  return (
+    <Wrapper>
+      <div className="title">
+        <img
+          src="https://dl.airtable.com/.attachments/543ddbfca798cbc4c56117a4bfde92e3/212c0527/0-pexels-valeria-boltneva-827518.jpg"
+          alt="leather chair"
+        />
+        <div>
+          <h5 className="name">leather chair</h5>
+          <p className="color">
+            color :<span style={{ background: ' rgb(255, 0, 0)' }}></span>
+          </p>
+          <h5 className="price-small">$200.99</h5>
+        </div>
+      </div>
+      <h5 className="price">$200.99</h5>
+      <AmountButtons />
+      <h5 className="subtotal">$1,004.95</h5>
+      <button className="remove-btn">
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 448 512"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>
+        </svg>
+      </button>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.article`
   .subtotal {
@@ -142,6 +174,6 @@ const Wrapper = styled.article`
       }
     }
   }
-`
+`;
 
-export default CartItem
+export default CartItem;
