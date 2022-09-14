@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 import CartColumns from './CartColumns';
 import CartItem from './CartItem';
 import CartTotals from './CartTotals';
+import { getTotals } from '../utils/helpers';
 
 const CartContent = () => {
   let { cart, clearCart } = useCartContext();
+  let {totalPrice} = getTotals(cart)
+
   return (
     <Wrapper className="section section-center">
       <CartColumns />
@@ -27,7 +30,7 @@ const CartContent = () => {
           clear shopping cart
         </button>
       </div>
-      <CartTotals />
+      <CartTotals totalPrice={totalPrice}/>
     </Wrapper>
   );
 };

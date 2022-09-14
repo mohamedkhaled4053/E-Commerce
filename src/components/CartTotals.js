@@ -5,20 +5,22 @@ import { useUserContext } from '../context/user_context';
 import { formatPrice } from '../utils/helpers';
 import { Link } from 'react-router-dom';
 
-const CartTotals = () => {
+const CartTotals = ({totalPrice}) => {
+
+  let shippingFee = 534
   return (
     <Wrapper>
       <div>
         <article>
           <h5>
-            subtotal :<span>$1,267.92</span>
+            subtotal :<span>{formatPrice(totalPrice)}</span>
           </h5>
           <p>
-            shipping fee :<span>$5.34</span>
+            shipping fee :<span>{formatPrice(shippingFee)}</span>
           </p>
           <hr />
           <h4>
-            order total :<span>$1,273.26</span>
+            order total :<span>{formatPrice(totalPrice + shippingFee)}</span>
           </h4>
         </article>
         <button className="btn">login</button>
