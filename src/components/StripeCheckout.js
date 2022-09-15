@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useCartContext } from '../context/cart_context';
 import { useUserContext } from '../context/user_context';
-import { formatPrice } from '../utils/helpers';
+import { formatPrice, getTotals } from '../utils/helpers';
 import { useHistory } from 'react-router-dom';
 import {
   FaCcAmex,
@@ -10,69 +10,84 @@ import {
   FaCcMastercard,
   FaCcVisa,
 } from 'react-icons/fa';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const CheckoutForm = () => {
+  let { user } = useAuth0();
+  let { cart } = useCartContext();
+  let { totalPrice } = getTotals(cart);
+
+  if (cart.length < 1) {
+    return (
+      <Wrapper>
+        <div class="empty">
+          <h2>Your cart is empty</h2>
+          <a class="btn" href="/products">
+            fill it
+          </a>
+        </div>
+      </Wrapper>
+    );
+  }
+
   return (
     <div className="row">
       <div className="col-75">
         <div className="container">
           <article>
-            <h4>Hello, محمد خالد</h4>
-            <p>Your total is $30.99</p>
+            <h4>Hello, {user.name}</h4>
+            <p>Your total is {formatPrice(totalPrice)}</p>
             <p>Test Card Number: 4242 4242 4242 4242</p>
           </article>
           <form>
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div className="icon-container">
+              <FaCcVisa style={{ color: ' navy' }} />
+              <FaCcAmex style={{ color: ' blue' }} />
+              <FaCcMastercard style={{ color: ' red' }} />
+              <FaCcDiscover style={{ color: ' orange' }} />
+            </div>
+            <label for="cname">Name on Card</label>
+            <input
+              type="text"
+              id="cname"
+              name="cardname"
+              placeholder="John More Doe"
+            />
+            <label for="ccnum">Credit card number</label>
+            <input
+              type="text"
+              id="ccnum"
+              name="cardnumber"
+              placeholder="1111-2222-3333-4444"
+            />
+            <label for="expmonth">Exp Month</label>
+            <input
+              type="text"
+              id="expmonth"
+              name="expmonth"
+              placeholder="September"
+            />
 
-         
-                <h3>Payment</h3>
-                <label for="fname">Accepted Cards</label>
-                <div className="icon-container">
-                  <FaCcVisa style={{ color: ' navy' }} />
-                  <FaCcAmex style={{ color: ' blue' }} />
-                  <FaCcMastercard style={{ color: ' red' }} />
-                  <FaCcDiscover style={{ color: ' orange' }} />
-                </div>
-                <label for="cname">Name on Card</label>
+            <input type="text" name="" id="" style={{ display: 'none' }} />
+
+            <div className="row">
+              <div className="col-50">
+                <label for="expyear">Exp Year</label>
                 <input
                   type="text"
-                  id="cname"
-                  name="cardname"
-                  placeholder="John More Doe"
+                  id="expyear"
+                  name="expyear"
+                  placeholder="2018"
                 />
-                <label for="ccnum">Credit card number</label>
-                <input
-                  type="text"
-                  id="ccnum"
-                  name="cardnumber"
-                  placeholder="1111-2222-3333-4444"
-                />
-                <label for="expmonth">Exp Month</label>
-                <input
-                  type="text"
-                  id="expmonth"
-                  name="expmonth"
-                  placeholder="September"
-                />
+              </div>
+              <div className="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352" />
+              </div>
+            </div>
 
-                <input type="text" name="" id="" style={{ display: 'none' }} />
-
-                <div className="row">
-                  <div className="col-50">
-                    <label for="expyear">Exp Year</label>
-                    <input
-                      type="text"
-                      id="expyear"
-                      name="expyear"
-                      placeholder="2018"
-                    />
-                  </div>
-                  <div className="col-50">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" placeholder="352" />
-                  </div>
-                </div>
-            
-   
             <input type="submit" value="Pay" className="btn" />
           </form>
         </div>
@@ -91,6 +106,14 @@ const StripeCheckout = () => {
 
 const Wrapper = styled.section`
   padding: 5em 0;
+
+  .empty {
+    text-align: center;
+    h2 {
+      margin-bottom: 1rem;
+      text-transform: none;
+    }
+  }
 
   .row {
     display: -ms-flexbox; /* IE10 */
