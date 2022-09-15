@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { formatPrice } from '../utils/helpers';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { shippingFee } from '../utils/constants';
 
 const CartTotals = ({ totalPrice }) => {
   let { isAuthenticated , loginWithRedirect} = useAuth0();
-  let shippingFee = 534;
+
 
   return (
     <Wrapper>

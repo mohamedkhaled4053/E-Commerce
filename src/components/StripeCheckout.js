@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useCartContext } from '../context/cart_context';
 import { formatPrice, getTotals } from '../utils/helpers';
+import { shippingFee } from '../utils/constants';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   FaCcAmex,
@@ -71,7 +72,7 @@ const CheckoutForm = () => {
         <div className="container">
           <article>
             <h4>Hello, {user.name}</h4>
-            <p>Your total is {formatPrice(totalPrice)}</p>
+            <p>Your total is {formatPrice(totalPrice + shippingFee)}</p>
             <p>Test Card Number: 4242 4242 4242 4242</p>
           </article>
           <form onSubmit={handleSubmit}>
