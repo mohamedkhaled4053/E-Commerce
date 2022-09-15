@@ -9,7 +9,8 @@ import {
   Error,
   About,
   Products,
-} from './pages'
+  PrivateRoute,
+} from './pages';
 
 function App() {
   return (
@@ -17,13 +18,20 @@ function App() {
       <Navbar />
       <Sidebar />
       <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/about' element={<About />}/>
-        <Route path='/products' element={<Products />}/>
-        <Route path='/checkout' element={<Checkout />}/>
-        <Route path='/cart' element={<Cart />}/>
-        <Route path='/products/:id' element={<SingleProduct />}/>
-        <Route path='*' element={<Error />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products />} />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute>
+              <Checkout />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </BrowserRouter>
