@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useCartContext } from '../context/cart_context';
 import { useUserContext } from '../context/user_context';
 import { formatPrice, getTotals } from '../utils/helpers';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory, useNavigate } from 'react-router-dom';
 import {
   FaCcAmex,
   FaCcDiscover,
@@ -14,17 +14,53 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const CheckoutForm = () => {
   let { user } = useAuth0();
-  let { cart } = useCartContext();
+  let { cart, clearCart } = useCartContext();
   let { totalPrice } = getTotals(cart);
+  let navigate = useNavigate();
+
+  let [payment, setPayment] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    clearCart();
+    setPayment(true);
+  }
+
+  useEffect(() => {
+    if(!payment) return
+    
+    let timer = setTimeout(() => {
+      setPayment(false);
+      navigate('/')
+    }, 3000);
+    return () => {
+      clearTimeout(timer);
+    };
+    
+    // eslint-disable-next-line
+  }, [payment]);
+
+  if (payment) {
+    return (
+      <Wrapper>
+        <div class="empty">
+          <h2>succeful payment</h2>
+          <Link class="btn" to="/" onClick={()=>setPayment(false)}>
+            go home
+          </Link>
+        </div>
+      </Wrapper>
+    );
+  }
 
   if (cart.length < 1) {
     return (
       <Wrapper>
         <div class="empty">
           <h2>Your cart is empty</h2>
-          <a class="btn" href="/products">
+          <Link class="btn" to="/products">
             fill it
-          </a>
+          </Link>
         </div>
       </Wrapper>
     );
@@ -39,7 +75,7 @@ const CheckoutForm = () => {
             <p>Your total is {formatPrice(totalPrice)}</p>
             <p>Test Card Number: 4242 4242 4242 4242</p>
           </article>
-          <form>
+          <form onSubmit={handleSubmit}>
             <h3>Payment</h3>
             <label for="fname">Accepted Cards</label>
             <div className="icon-container">
@@ -73,13 +109,7 @@ const CheckoutForm = () => {
               required
             />
 
-            <input
-              type="text"
-              name=""
-              id=""
-              style={{ display: 'none' }}
-              required
-            />
+            <input type="text" name="" id="" style={{ display: 'none' }} />
 
             <div className="row">
               <div className="col-50">
