@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useCartContext } from '../context/cart_context';
-import { useUserContext } from '../context/user_context';
 import { formatPrice, getTotals } from '../utils/helpers';
-import { Link, useHistory, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   FaCcAmex,
   FaCcDiscover,
