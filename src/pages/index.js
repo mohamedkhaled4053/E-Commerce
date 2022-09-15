@@ -3,7 +3,7 @@ import Products from './ProductsPage'
 import SingleProduct from './SingleProductPage'
 import About from './AboutPage'
 import Cart from './CartPage'
-import Error from './ErrorPage'
+import ErrorPage from './ErrorPage'
 import Checkout from './CheckoutPage'
 import PrivateRoute from './PrivateRoute'
 import AuthWrapper from './AuthWrapper'
@@ -14,7 +14,7 @@ export {
   SingleProduct,
   About,
   Cart,
-  Error,
+  ErrorPage,
   Checkout,
   PrivateRoute,
   AuthWrapper,
