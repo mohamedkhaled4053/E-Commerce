@@ -9,14 +9,17 @@ const CartPage = () => {
 
   if (cart.length < 1) {
     return (
-      <Wrapper className="page-100">
-        <div className="empty">
-          <h2>Your cart is empty</h2>
-          <Link className="btn" to="/products">
-            fill it
-          </Link>
-        </div>
-      </Wrapper>
+      <main>
+        <PageHero title="cart" />
+        <Wrapper className="page-100">
+          <div className="empty">
+            <h2>Your cart is empty</h2>
+            <Link className="btn" to="/products">
+              fill it
+            </Link>
+          </div>
+        </Wrapper>
+      </main>
     );
   }
 
