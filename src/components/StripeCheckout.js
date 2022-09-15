@@ -54,6 +54,7 @@ const CheckoutForm = () => {
               id="cname"
               name="cardname"
               placeholder="John More Doe"
+              required
             />
             <label for="ccnum">Credit card number</label>
             <input
@@ -61,6 +62,7 @@ const CheckoutForm = () => {
               id="ccnum"
               name="cardnumber"
               placeholder="1111-2222-3333-4444"
+              required
             />
             <label for="expmonth">Exp Month</label>
             <input
@@ -68,9 +70,16 @@ const CheckoutForm = () => {
               id="expmonth"
               name="expmonth"
               placeholder="September"
+              required
             />
 
-            <input type="text" name="" id="" style={{ display: 'none' }} />
+            <input
+              type="text"
+              name=""
+              id=""
+              style={{ display: 'none' }}
+              required
+            />
 
             <div className="row">
               <div className="col-50">
@@ -80,11 +89,18 @@ const CheckoutForm = () => {
                   id="expyear"
                   name="expyear"
                   placeholder="2018"
+                  required
                 />
               </div>
               <div className="col-50">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352" />
+                <input
+                  type="text"
+                  id="cvv"
+                  name="cvv"
+                  placeholder="352"
+                  required
+                />
               </div>
             </div>
 
