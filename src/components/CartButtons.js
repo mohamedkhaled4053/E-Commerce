@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useProductsContext } from '../context/products_context';
 import { useCartContext } from '../context/cart_context';
-import { useUserContext } from '../context/user_context';
 import { getTotals } from '../utils/helpers';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const CartButtons = () => {
+  let { isAuthenticated, loginWithPopup, logout } = useAuth0();
   let { closeSidebar } = useProductsContext();
   let { cart } = useCartContext();
 
@@ -22,10 +23,21 @@ const CartButtons = () => {
           <span className="cart-value">{totalAmount}</span>
         </span>
       </Link>
-      <button type="button" className="auth-btn">
-        Logout
-        <FaUserMinus />
-      </button>
+      {isAuthenticated ? (
+        <button
+          type="button"
+          className="auth-btn"
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          Logout
+          <FaUserMinus />
+        </button>
+      ) : (
+        <button type="button" className="auth-btn" onClick={loginWithPopup}>
+          Login
+          <FaUserPlus />
+        </button>
+      )}
     </Wrapper>
   );
 };
