@@ -48,7 +48,7 @@ export const FilterProvider = ({ children }) => {
   function updateFilters(name, value) {
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   }
-  function clearFilters(name, value) {
+  function clearFilters() {
     dispatch({ type: CLEAR_FILTERS });
   }
 
