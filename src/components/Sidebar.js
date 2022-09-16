@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../assets/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useProductsContext } from '../context/products_context';
 import { FaTimes } from 'react-icons/fa';
 import { links } from '../utils/constants';
@@ -24,14 +24,14 @@ const Sidebar = () => {
         <ul className="links">
           {links.map(({ id, text, url }) => (
             <li key={id}>
-              <Link to={url} onClick={closeSidebar}>
+              <NavLink className={({isActive})=> isActive && 'active'} to={url} onClick={closeSidebar}>
                 {text}
-              </Link>
+              </NavLink>
             </li>
           ))}
           {isAuthenticated && (
             <li>
-              <Link to="/checkout" onClick={closeSidebar}>checkout</Link>
+              <NavLink className={({isActive})=> isActive && 'active'} to="/checkout" onClick={closeSidebar}>checkout</NavLink>
             </li>
           )}
         </ul>
@@ -78,6 +78,10 @@ const SidebarContainer = styled.div`
     color: var(--clr-grey-3);
     transition: var(--transition);
     letter-spacing: var(--spacing);
+    
+    &.active{
+      font-weight: bold;
+    }
   }
 
   .links a:hover {
