@@ -179,6 +179,11 @@ const Wrapper = styled.article`
       }
     }
   }
+
+  @media (max-width: 450px) {
+    gap: 0;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export default CartItem;

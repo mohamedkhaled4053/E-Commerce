@@ -9,9 +9,9 @@ import CartButtons from './CartButtons';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Sidebar = () => {
-  let { isAuthenticated } = useAuth0()
+  let { isAuthenticated } = useAuth0();
   let { showSidebar, closeSidebar } = useProductsContext();
-  
+
   return (
     <SidebarContainer>
       <aside className={`sidebar ${showSidebar ? 'show-sidebar' : null}`}>
@@ -29,9 +29,9 @@ const Sidebar = () => {
               </Link>
             </li>
           ))}
-                    {isAuthenticated && (
+          {isAuthenticated && (
             <li>
-              <Link to="/checkout">checkout</Link>
+              <Link to="/checkout" onClick={closeSidebar}>checkout</Link>
             </li>
           )}
         </ul>

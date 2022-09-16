@@ -64,6 +64,11 @@ const Wrapper = styled.section`
     text-align: center;
     font-weight: 700;
   }
+  @media (max-width: 500px) {
+    article {
+      padding: 1.5rem;
+    }
+  }
 `;
 
 export default CartTotals;

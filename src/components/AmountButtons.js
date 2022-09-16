@@ -48,6 +48,9 @@ const Wrapper = styled.div`
     color: black;
     transition: 1.5s
   }
+  @media (max-width: 390px) {
+    width: auto
+  }
 `;
 
 export default AmountButtons;

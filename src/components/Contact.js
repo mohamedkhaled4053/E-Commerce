@@ -21,15 +21,6 @@ const Contact = () => {
             <button type="submit" className="submit-btn">
               subscribe
             </button>
-            <div
-              data-lastpass-icon-root="true"
-              style={{
-                position: 'relative !important',
-                height: '0px !important',
-                width: '0px !important',
-                float: 'left !important',
-              }}
-            ></div>
           </form>
         </div>
       </div>
@@ -98,6 +89,23 @@ const Wrapper = styled.section`
   }
   @media (min-width: 1280px) {
     padding: 15rem 0;
+  }
+
+  @media (max-width: 400px) {
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-input {
+      border-radius: var(--radius);
+      border-right: solid;
+      width:100%
+    }
+    .submit-btn {
+      border-radius: var(--radius);
+      margin-top: 20px;
+    }
   }
 `;
 
