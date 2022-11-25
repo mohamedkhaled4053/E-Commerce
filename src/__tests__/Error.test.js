@@ -11,13 +11,13 @@ test('should show error message', () => {
 
 test('should not have page class if not passed as prop', () => {
   render(<Error />);
-    const children = document.getElementsByClassName('page')
+    const children = document.getElementsByClassName('page-100')
 
   expect(children.length).toBe(0)
 });
 test('should have page class if passed as prop', () => {
   render(<Error page/>);
-    const children = document.getElementsByClassName('page')
+    const children = document.getElementsByClassName('page-100')
 
   expect(children.length).toBe(1)
 });
