@@ -31,11 +31,11 @@ const SingleProductPage = () => {
   }, []);
 
   if (loading) {
-    return <Loading />;
+    return <Loading page/>;
   }
 
   if (error) {
-    return <Error />;
+    return <Error page/>;
   }
 
   let {
