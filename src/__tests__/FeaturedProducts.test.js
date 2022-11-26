@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { FeaturedProducts } from '../components';
 import { ProductsProvider } from '../context/products_context';
+import { ProductsResponse } from '../utils/mockConstants';
 
 function MockFeaturedProducts(params) {
   return (
@@ -14,7 +15,19 @@ function MockFeaturedProducts(params) {
   );
 }
 
-test('heading should not be there at the beginning',  () => {
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(ProductsResponse),
+    })
+  );
+});
+
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
+test('heading should not be there at the beginning', () => {
   render(<MockFeaturedProducts />);
   let heading =  screen.queryByRole('heading', { name: 'featured products' });
   expect(heading).toBeNull();
