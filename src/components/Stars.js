@@ -6,23 +6,23 @@ const Stars = ({ stars, reviews }) => {
     <Wrapper>
       <div className="stars">
         {Array.from({ length: 5 }, (_, index) => {
-          if (index + 1 < stars) {
+          if (index + 1 <= stars) {
             return (
-              <span>
+              <span className='full-star'>
                 <BsStarFill />
               </span>
             );
           }
           if (stars - index >= 0.5) {
             return (
-              <span>
+              <span className='half-star'>
                 <BsStarHalf />
               </span>
             );
           }
 
           return (
-            <span>
+            <span className='empty-star'>
               <BsStar />
             </span>
           );
