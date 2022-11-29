@@ -11,7 +11,7 @@ const AddToCart = ({ product }) => {
   let [amount, setAmount] = useState(1);
   let [alert, setAlert] = useState('');
 
-  let { addToCart, cart } = useCartContext();
+  let { addToCart, cart, setAlertId } = useCartContext();
 
   function increase() {
     setAlert('');
@@ -19,6 +19,7 @@ const AddToCart = ({ product }) => {
       setAmount(amount + 1);
     } else {
       setAlert('this is all amount in stock for now');
+      setAlertId(id);
     }
   }
 
@@ -28,6 +29,7 @@ const AddToCart = ({ product }) => {
       setAmount(amount - 1);
     } else {
       setAlert("can't be less than one");
+      setAlertId(id);
     }
   }
 
@@ -64,12 +66,15 @@ const AddToCart = ({ product }) => {
       </div>
 
       <div className="btn-container">
-        <AmountButtons
-          amount={amount}
-          increase={increase}
-          decrease={decrease}
-        />
-        {alert && <p className="alert">{alert}</p>}
+        <div className="amount-btns-container">
+          <AmountButtons
+            id={id}
+            amount={amount}
+            increase={increase}
+            decrease={decrease}
+          />
+          {alert && <p className="alert">{alert}</p>}
+        </div>
         <Link
           className="btn"
           to="/cart"
@@ -120,9 +125,14 @@ const Wrapper = styled.section`
   }
   .btn-container {
     margin-top: 2rem;
+    .amount-btns-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
     .alert {
       color: red;
-      margin-bottom: none;
+      margin-bottom: 0;
     }
   }
 

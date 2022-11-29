@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
   let [cart, setCart] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
   );
-  let [alertId, seAlertId] = useState(null);
+  let [alertId, setAlertId] = useState(null);
 
   // helper funtions
   function addToCart(id, amount, color, product) {
@@ -66,7 +66,7 @@ export const CartProvider = ({ children }) => {
           // if we don't have we won't increase the amount and we will have red lighting as alert
           let allowedIncrease = item.stock - totalAmountOfKind;
           if (allowedIncrease <= 0) {
-            seAlertId(id)
+            setAlertId(id)
             return item;
           }
           // if we still have items in stock we can increase the amount
@@ -76,7 +76,7 @@ export const CartProvider = ({ children }) => {
         } else {
           // prevent amount to be less than 1 and fire alert red lighting
           if (item.amount <= 1) {
-            seAlertId(id)
+            setAlertId(id)
             return { ...item, amount: 1 };
           }
           // or decrease the amount
@@ -97,12 +97,12 @@ export const CartProvider = ({ children }) => {
 
   // cancel alert directly after being fired
   useEffect(() => {
-    seAlertId(null)
+    setAlertId(null)
   }, [alertId]);
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, deleteItem, clearCart, toggleAmount, alertId }}
+      value={{ cart, addToCart, deleteItem, clearCart, toggleAmount,setAlertId, alertId }}
     >
       {children}
     </CartContext.Provider>
