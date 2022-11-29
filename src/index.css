@@ -204,3 +204,10 @@ p {
 .page {
   min-height: calc(100vh - (20vh + 10rem));
 }
+
+.hidden {
+  transition: none !important;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+}
