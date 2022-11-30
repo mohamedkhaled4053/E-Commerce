@@ -148,6 +148,7 @@ const Wrapper = styled.section`
     letter-spacing: var(--spacing);
     color: var(--clr-grey-5);
     cursor: pointer;
+    transition:border-color 0.3s
   }
   .active {
     border-color: var(--clr-grey-5);
@@ -175,9 +176,13 @@ const Wrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.25s;
     svg {
       font-size: 0.5rem;
       color: var(--clr-white);
+    }
+    &:hover{
+      opacity: 1;
     }
   }
   .all-btn {

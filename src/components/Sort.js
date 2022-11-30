@@ -83,6 +83,7 @@ const Wrapper = styled.section`
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: 0.4s;
       svg {
         font-size: 1rem;
       }

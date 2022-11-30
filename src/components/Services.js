@@ -46,6 +46,7 @@ const Services = () => {
 const Wrapper = styled.section`
   h3,
   h4 {
+    transition:all 0.5s;
     color: var(--clr-primary-1);
   }
   padding: 5rem 0;
@@ -56,6 +57,7 @@ const Wrapper = styled.section`
     margin-bottom: 2rem;
   }
   p {
+    transition:all 0.5s;
     margin-bottom: 0;
     line-height: 1.8;
     color: var(--clr-primary-3);
@@ -70,11 +72,27 @@ const Wrapper = styled.section`
     text-align: center;
     padding: 2.5rem 2rem;
     border-radius: var(--radius);
-    transition: 1s;
+    transition:all 0.5s;, transform 1s;
     p {
       color: var(--clr-primary-2);
     }
   }
+
+  .service:hover{
+    background: #866d5e;
+    h4 {
+      color: white;
+    }
+    p {
+      color: white;
+    }
+    span{
+    background: black;
+    color: white;
+
+    }
+  }
+
   span {
     width: 4rem;
     height: 4rem;
@@ -85,6 +103,7 @@ const Wrapper = styled.section`
     border-radius: 50%;
     background: var(--clr-primary-10);
     color: var(--clr-primary-1);
+    transition:all 0.5s;
     svg {
       font-size: 2rem;
     }

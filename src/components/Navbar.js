@@ -97,6 +97,8 @@ const NavContainer = styled.nav`
         text-transform: capitalize;
         letter-spacing: var(--spacing);
         padding: 0.5rem;
+        transition:border-bottom 0.5s;
+        border-bottom: 2px solid transparent;
         &:hover {
           border-bottom: 2px solid var(--clr-primary-7);
         }
