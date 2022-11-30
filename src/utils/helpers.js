@@ -22,42 +22,41 @@ export const getUniqueValues = (products, type) => {
 };
 
 export function getTotals(cart) {
-  let totals = cart.reduce((total,item) => {
-    total.totalAmount += item.amount
-    total.totalPrice += item.price * item.amount
-    return total
-  }, {
-    totalAmount: 0,
-    totalPrice: 0,
-  });
+  let totals = cart.reduce(
+    (total, item) => {
+      total.totalAmount += item.amount;
+      total.totalPrice += item.price * item.amount;
+      return total;
+    },
+    {
+      totalAmount: 0,
+      totalPrice: 0,
+    }
+  );
 
-  return totals
+  return totals;
 }
-
 
 function isInViewport(element) {
   if (!element) {
     return false;
   }
   let rec = element.getBoundingClientRect();
-  return rec.top-50 < window.innerHeight;
+  return rec.top - 50 < window.innerHeight;
 }
 
 export function showElement(element) {
-  if (!element) return
+  if (!element) return;
   if (isInViewport(element)) {
-    element.classList.remove('hidden')      
+    element.classList.remove('hidden');
   } else {
-    element.classList.add('hidden')      
-    
+    element.classList.add('hidden');
   }
 }
 
-
 export function scrollListenerAndCleanUp(func) {
-  document.addEventListener('scroll',func);
+  document.addEventListener('scroll', func);
   return () => {
-    document.removeEventListener('scroll',func);
+    document.removeEventListener('scroll', func);
   };
-
 }

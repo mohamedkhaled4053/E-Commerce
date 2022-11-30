@@ -4,20 +4,16 @@ import { services } from '../utils/constants';
 import { scrollListenerAndCleanUp, showElement } from '../utils/helpers';
 
 const Services = () => {
-
-
-
-
   function showServices() {
-    let services = Array.from(document.getElementsByClassName('service'))
-    services.forEach(service => {
-      showElement(service)
+    let services = Array.from(document.getElementsByClassName('service'));
+    services.forEach((service) => {
+      showElement(service);
     });
   }
 
-  useEffect(()=>{
-    return scrollListenerAndCleanUp(showServices)
-  })
+  useEffect(() => {
+    return scrollListenerAndCleanUp(showServices);
+  });
 
   return (
     <Wrapper>
@@ -74,7 +70,7 @@ const Wrapper = styled.section`
     text-align: center;
     padding: 2.5rem 2rem;
     border-radius: var(--radius);
-    transition:1s;
+    transition: 1s;
     p {
       color: var(--clr-primary-2);
     }

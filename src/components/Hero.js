@@ -10,11 +10,11 @@ const Hero = () => {
 
   useEffect(() => {
     function showHero() {
-    showElement(HeroConatainer.current);
+      showElement(HeroConatainer.current);
     }
 
-    showHero()
-    return scrollListenerAndCleanUp(showHero)
+    showHero();
+    return scrollListenerAndCleanUp(showHero);
   }, []);
 
   return (
