@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import heroBcg from '../assets/hero-bcg.jpeg';
 import heroBcg2 from '../assets/hero-bcg-2.jpeg';
+import { showElement } from '../utils/helpers';
 
 const Hero = () => {
+  let HeroConatainer = useRef(null);
+
+  useEffect(() => {
+    function showHero() {
+    showElement(HeroConatainer.current);
+    }
+
+    showHero()
+    document.addEventListener('scroll', showHero);
+    return () => {
+      document.removeEventListener('scroll', showHero);
+    };
+  }, []);
+
   return (
-    <Wrapper className="section-center">
+    <Wrapper className="section-center hidden" ref={HeroConatainer}>
       <article className="content">
         <h1>
           design your <br />
@@ -34,6 +49,8 @@ const Wrapper = styled.section`
   min-height: 60vh;
   display: grid;
   place-items: center;
+  transition: 1s;
+
   .img-container {
     display: none;
   }
