@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import heroBcg from '../assets/hero-bcg.jpeg';
 import heroBcg2 from '../assets/hero-bcg-2.jpeg';
-import { showElement } from '../utils/helpers';
+import { scrollListenerAndCleanUp, showElement } from '../utils/helpers';
 
 const Hero = () => {
   let HeroConatainer = useRef(null);
@@ -14,10 +14,7 @@ const Hero = () => {
     }
 
     showHero()
-    document.addEventListener('scroll', showHero);
-    return () => {
-      document.removeEventListener('scroll', showHero);
-    };
+    return scrollListenerAndCleanUp(showHero)
   }, []);
 
   return (

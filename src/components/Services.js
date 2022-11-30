@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { services } from '../utils/constants';
-import { showElement } from '../utils/helpers';
+import { scrollListenerAndCleanUp, showElement } from '../utils/helpers';
 
 const Services = () => {
 
@@ -16,11 +16,7 @@ const Services = () => {
   }
 
   useEffect(()=>{
-    document.addEventListener('scroll',showServices)
-
-    return ()=>{
-      document.removeEventListener('scroll',showServices)
-    }
+    return scrollListenerAndCleanUp(showServices)
   })
 
   return (

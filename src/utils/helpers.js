@@ -52,3 +52,12 @@ export function showElement(element) {
     
   }
 }
+
+
+export function scrollListenerAndCleanUp(func) {
+  document.addEventListener('scroll',func);
+  return () => {
+    document.removeEventListener('scroll',func);
+  };
+
+}

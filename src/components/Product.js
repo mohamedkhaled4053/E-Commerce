@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { formatPrice, showElement } from '../utils/helpers';
+import { formatPrice, scrollListenerAndCleanUp, showElement } from '../utils/helpers';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -18,11 +18,7 @@ const Product = ({ id, name, price, image }) => {
     }
 
     showProduct()
-    document.addEventListener('scroll',showProduct);
-    return () => {
-      document.removeEventListener('scroll',showProduct);
-    };
-
+    return scrollListenerAndCleanUp(showProduct)
     // eslint-disable-next-line
   });
 
