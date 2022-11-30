@@ -33,3 +33,22 @@ export function getTotals(cart) {
 
   return totals
 }
+
+
+function isInViewport(element) {
+  if (!element) {
+    return false;
+  }
+  let rec = element.getBoundingClientRect();
+  return rec.top-50 < window.innerHeight;
+}
+
+export function showElement(element) {
+  if (!element) return
+  if (isInViewport(element)) {
+    element.classList.remove('hidden')      
+  } else {
+    element.classList.add('hidden')      
+    
+  }
+}

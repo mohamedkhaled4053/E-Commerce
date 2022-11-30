@@ -1,49 +1,33 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { formatPrice } from '../utils/helpers';
+import { formatPrice, showElement } from '../utils/helpers';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Product = ({ id, name, price, image }) => {
+  let productContainer = useRef(null);
 
-  let productContainer = useRef(null)
-   // helper functions
-   function isInViewport(element) {
-    if (!element) {
-      return false;
-    }
-    let rec = element.getBoundingClientRect();
-    return rec.top-50 < window.innerHeight;
-  }
-
-  function showProduct() {
-    if (!productContainer.current) return
-    if (isInViewport(productContainer.current)) {
-      productContainer.current.classList.remove('hidden')      
-    } else {
-      productContainer.current.classList.add('hidden')      
-      
-    }
-  }
-
-  
   // effects
   // smoothly display Product component
   useEffect(() => {
+    let productElement = productContainer.current;
+    productElement.classList.add('hidden');
 
-      productContainer.current.classList.add('hidden')      
-    
-      showProduct()
-      document.addEventListener('scroll', showProduct);
-      return () => {
-        document.removeEventListener('scroll', showProduct);
-      };
+    function showProduct() {
+      showElement(productElement);
+    }
+
+    showProduct()
+    document.addEventListener('scroll',showProduct);
+    return () => {
+      document.removeEventListener('scroll',showProduct);
+    };
 
     // eslint-disable-next-line
   });
 
   return (
-    <Wrapper className='hidden' ref={productContainer}>
+    <Wrapper className="hidden" ref={productContainer}>
       <div className="container">
         <img src={image} alt={`product ${name}`} />
         <Link className="link" to={`/products/${id}`}>
@@ -59,7 +43,7 @@ const Product = ({ id, name, price, image }) => {
 };
 
 const Wrapper = styled.article`
-transition: 1s;
+  transition: 1s;
   .container {
     position: relative;
     background: var(--clr-black);
