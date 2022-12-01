@@ -29,7 +29,9 @@ const Product = ({ id, name, price, image }) => {
   return (
     <Wrapper className="hidden" ref={productContainer}>
       <div className="container">
-        <img src={image} alt={`product ${name}`} />
+        <Link to={`/products/${id}`}>
+          <img src={image} alt={`product ${name}`} />
+        </Link>
         <Link className="link" to={`/products/${id}`}>
           <FaSearch />
         </Link>
